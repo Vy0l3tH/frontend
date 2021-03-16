@@ -18,6 +18,11 @@ export default new Router({
       component: () => import("./components/AddPatient")
     },
     {
+      path: "/viewPatient/:id",
+      name: "viewPatient",
+      component: () => import("./components/PatientFormulairesList")
+    },
+    {
       path: "/addFormulaire",
       name: "addFormulaire",
       component: () => import("./components/AddFormulaire")

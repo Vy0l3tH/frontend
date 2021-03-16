@@ -7,6 +7,8 @@
           <a class="m-3 btn btn-sm btn-info" :href="'/addPatient/'">
         New patient
       </a>  
+
+        
       <h4>Patients List</h4>
       <ul class="list-group">
         <li class="list-group-item"
@@ -30,7 +32,10 @@
         </div>
         <div>
           <label><strong>Email:</strong></label> {{ currentPatient.doc.email  }}
-        </div>
+        </div>   
+          <a class="m-3 btn btn-sm btn-info" v-bind:href="'/viewPatient/'+currentPatient.doc.name.toLowerCase()">
+        View patient forms
+      </a>  
       </div>
     </div>
   </div>
