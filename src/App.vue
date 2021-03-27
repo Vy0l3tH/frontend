@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-info">
-      <router-link to="/" class="navbar-brand">Homelink</router-link>
+      <router-link to="/" class="navbar-brand">Homelink manager</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/patients" class="nav-link">Patients</router-link>

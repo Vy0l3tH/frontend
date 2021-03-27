@@ -1,7 +1,7 @@
 <template>
   <div class="FreeText">
     <h1>{{block.headline}}</h1>
-    <input/>
+    <input v-model="block.value"/>
   </div>
 </template>
  

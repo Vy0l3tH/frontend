@@ -6,7 +6,7 @@
     <div class="col-md-6">
      
          <select  class="form-select form-select-lg mb-3"  v-model="selected">
-  <option v-for="formu in availableFormulaires"  v-bind:value="formu.doc" v-bind:key="formu.doc" >
+  <option v-for="formu in availableFormulaires"  v-bind:value="formu.doc" v-bind:key="formu.doc.iden" >
     {{ formu.doc.identifiant }}
   </option>
 
@@ -106,9 +106,11 @@ export default {
     },
 
     addFormToPatient(formulaire) {
+      console.log(formulaire);
        var data = {
         formulaire: formulaire.formulaire,
-        identifiant:formulaire.identifiant
+        identifiant:formulaire.identifiant,
+        validated:formulaire.validated
       };
 
       PatientDataService.addForms(this.$route.params.id,data)
