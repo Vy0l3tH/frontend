@@ -32,7 +32,14 @@ export default new Router({
       path: "/formulaires",
       name: "formulaires",
       component: () => import("./components/FormulairesList")
+    },
+    {
+      path: "/addForm",
+      name: "Create form",
+      component: () => import("./components/FormEditor")
     }
+
+    
     
   ]
 });

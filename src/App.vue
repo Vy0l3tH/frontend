@@ -13,7 +13,7 @@
     </div>
     <div class="row">
       <div class="col-2 bg-info">
-        <b-nav vertical class="dropdown navbar navbar-dark bg-info">
+        <b-nav vertical class="navbar navbar-dark bg-info">
           <div class="navbar-nav mr-auto">
             <li class="nav-item">
               <router-link to="/patients" class="nav-link"
@@ -24,6 +24,10 @@
               <router-link to="/formulaires" class="nav-link"
                 >Formulaires</router-link
               >
+            </li>
+             <li class="nav-item">
+              <router-link to="/addForm" class="nav-link"
+                >Add form</router-link >
             </li>
           </div>
         </b-nav>
