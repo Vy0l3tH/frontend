@@ -1,26 +1,45 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-info">
-      <router-link to="/" class="navbar-brand">Homelink manager</router-link>
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/patients" class="nav-link">Patients</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/formulaires" class="nav-link">Formulaires</router-link>
-        </li>
+  <div id="app container">
+    <div class="row py-5" style="background-color:yellow;" >
+      <div class="col-2" style="background-color:red;">
+       
+        <span>HOMELINK</span>
+       
       </div>
-    </nav>
-
-    <div class="container mt-3">
-      <router-view />
+      <div class="col-9" >
+     <span>HEADER avec plein de trucs</span>
+      </div>
+      <div class="col-1" style="background-color:pink;">
+        <span>Options</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2" style="background-color:green;">
+        <b-nav vertical class="navbar navbar-dark bg-info">
+          <div class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <router-link to="/patients" class="nav-link"
+                >Patients</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link to="/formulaires" class="nav-link"
+                >Formulaires</router-link
+              >
+            </li>
+          </div>
+        </b-nav>
+      </div>
+      <div class="container col-10" style="background-color:purple;">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "app"
+  name: "app",
 };
 </script>
 
