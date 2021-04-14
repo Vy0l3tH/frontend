@@ -30,7 +30,7 @@
           </div>
         </b-nav>
       </div>
-      <div class="container col-10" >
+      <div class="col-10" >
         <router-view />
       </div>
     </div>
