@@ -1,21 +1,19 @@
 <template>
   <div id="app container">
-    <div class="row py-5 bg-info" >
+    <div class="row py-5 bg-info">
       <div class="col-2">
-       
-        <span>HOMELINK</span>
-       
+        <span style="">HOMELINK</span>
       </div>
-      <div class="col-9" >
-     <span>HEADER avec plein de trucs</span>
+      <div class="col-9">
+        <span>HEADER avec plein de trucs</span>
       </div>
       <div class="col-1">
         <span>Options</span>
       </div>
     </div>
     <div class="row">
-      <div class="col-2  bg-info" >
-        <b-nav vertical class="navbar navbar-dark bg-info">
+      <div class="col-2 bg-info">
+        <b-nav vertical class="dropdown navbar navbar-dark bg-info">
           <div class="navbar-nav mr-auto">
             <li class="nav-item">
               <router-link to="/patients" class="nav-link"
@@ -30,7 +28,7 @@
           </div>
         </b-nav>
       </div>
-      <div class="col-10" >
+      <div class="col-10">
         <router-view />
       </div>
     </div>

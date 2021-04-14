@@ -14,7 +14,19 @@
         hover
         :items="patients"
         :fields="fields"
-      ></b-table>
+      >
+       <template #cell(plop)  >
+        
+     
+        <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
+         Edit
+        </b-button>
+         <b-button class="btn btn-sm btn-info " :href="'/addPatient/'">
+         Delete
+        </b-button>
+      </template>
+      </b-table>
+      
       </b-col>
     </b-row>
   </b-container>
@@ -27,6 +39,7 @@ export default {
   data() {
     return {
       fields: [
+         
         {
           key: "doc.name",
           label: "Name",
@@ -56,7 +69,11 @@ export default {
           key: "doc.phoneNumber",
           label: "Phone number",
           sortable: false,
+        }, {key: "plop",
+          label: "",
+          sortable: false,
         },
+          
       ],
       patients: [],
       currentPatient: null,
@@ -122,4 +139,5 @@ export default {
   max-width: 750px;
   margin: auto;
 }
+
 </style>

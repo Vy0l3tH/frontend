@@ -1,47 +1,29 @@
 <template>
-  <div class="submit-form">
-    <div v-if="!submitted">
-      <div class="form-group">
-        <label for="title">Nom</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          required
+  <b-container fluid>
+    <b-row>
+    <b-form @submit="onSubmit" @reset="onReset">
+      <b-form-group id="input-group-1" label="Name:" label-for="nameInput">
+        <b-form-input
+          id="nameInput"
           v-model="patient.name"
-          name="title"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="age">Age</label>
-        <input
-          class="form-control"
-          id="Age"
+          placeholder="Enter name"
           required
-          v-model="patient.age"
-          name="age"
-        />
-      </div>
-        <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          class="form-control"
-          id="Email"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group id="input-group-1" label="First name:" label-for="nameInput">
+        <b-form-input
+          id="nameInput"
+          v-model="patient.name"
+          placeholder="Enter firstname"
           required
-          v-model="patient.email"
-          name="email"
-        />
-      </div>
-
-      <button @click="savePatient" class="btn btn-success">Submit</button>
-    </div>
-
-    <div v-else>
-      <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" @click="newPatient">Add</button>
-    </div>
-  </div>
+        ></b-form-input>
+      </b-form-group>
+      <b-button type="submit" class="mr-2" variant="info">Submit</b-button>
+      <b-button type="reset" variant="info">Reset</b-button>
+    </b-form>
+    </b-row>
+  </b-container>
+ 
 </template>
 
 <script>
@@ -82,7 +64,24 @@ export default {
     newPatient() {
       this.submitted = false;
       this.patient = {};
-    }
+    },
+    onSubmit(event) {
+        event.preventDefault()
+        this.savePatient()
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+
+        this.patient.name = ''
+
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
+    
   }
 };
 </script>
