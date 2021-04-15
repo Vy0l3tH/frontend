@@ -32,7 +32,17 @@ export default new Router({
       path: "/formulaires",
       name: "formulaires",
       component: () => import("./components/FormulairesList")
-    }
+    },
+    {
+      path: "/soignants",
+      name: "soignants",
+      component: () => import("./components/SoignantsList")
+    },
+    {
+      path: "/addSoignant/",
+      name: "addSoignant",
+      component: () => import("./components/AddSoignant")
+    },
     
   ]
 });

@@ -1,10 +1,11 @@
 <template>
   <b-container fluid>
+
     <b-row>
       <b-col cols="12" align-h="start">
-          <router-link to="/addPatient/">
-            <a class="m-3 btn btn-sm btn-info" :href="'/addPatient/'">
-              New patient
+          <router-link to="/addSoignant/">
+            <a class="m-3 btn btn-sm btn-info" :href="'/addSoignant/'">
+              New soignant
             </a>
           </router-link>
       </b-col>
@@ -19,16 +20,16 @@
       <b-table
         striped
         hover
-        :items="patients"
+        :items="soignants"
         :fields="fields"
       >
        <template #cell(plop)  >
         
      
-        <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
+        <b-button class="btn btn-sm btn-info mr-2" :href="'/addSoignant/'">
          Edit
         </b-button>
-         <b-button class="btn btn-sm btn-info " :href="'/addPatient/'">
+         <b-button class="btn btn-sm btn-info " :href="'/addSoignant/'">
          Delete
         </b-button>
       </template>
@@ -39,10 +40,10 @@
   </b-container>
 </template>
 <script>
-import PatientDataService from "../services/PatientDataService";
+import SoignantDataService from "../services/SoignantDataService";
 
 export default {
-  name: "patients-list",
+  name: "soignants-list",
   data() {
     return {
       fields: [
@@ -82,18 +83,18 @@ export default {
         },
           
       ],
-      patients: [],
-      currentPatient: null,
+      soignants: [],
+      currentSoignant: null,
       currentIndex: -1,
       title: "",
       aaze: null,
     };
   },
   methods: {
-    retrievePatients() {
-      PatientDataService.getAll()
+    retrieveSoignants() {
+      SoignantDataService.getAll()
         .then((response) => {
-          this.patients = response.data.rows;
+          this.soignants = response.data.rows;
           console.log(response.data);
         })
         .catch((e) => {
@@ -102,18 +103,18 @@ export default {
     },
 
     refreshList() {
-      this.retrievePatients();
-      this.currentPatient = null;
+      this.retrieveSoignants();
+      this.currentSoignant = null;
       this.currentIndex = -1;
     },
 
-    setActivePatient(patient, index) {
-      this.currentPatient = patient;
+    setActiveSoignant(soignant, index) {
+      this.currentSoignant = soignant;
       this.currentIndex = index;
     },
 
-    removeAllPatients() {
-      PatientDataService.deleteAll()
+    removeAllSoignants() {
+      SoignantDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
           this.refreshList();
@@ -124,9 +125,9 @@ export default {
     },
 
     searchTitle() {
-      PatientDataService.findByTitle(this.title)
+      SoignantDataService.findByTitle(this.title)
         .then((response) => {
-          this.patients = response.data;
+          this.soignants = response.data;
           console.log(response.data);
         })
         .catch((e) => {
@@ -135,7 +136,7 @@ export default {
     },
   },
   mounted() {
-    this.retrievePatients();
+    this.retrieveSoignants();
   },
 };
 </script>

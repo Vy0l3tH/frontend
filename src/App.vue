@@ -25,11 +25,22 @@
                 >Formulaires</router-link
               >
             </li>
+            <li class="nav-item">
+              <router-link to="/soignants" class="nav-link"
+                >Soignants</router-link
+              >
+            </li>
+            <li><br><br><br></li>
+            <li class="nav-item">
+              <router-link to="/logout" class="nav-link"
+                >Déconnexion</router-link
+              >
+            </li>
           </div>
         </b-nav>
       </div>
       <div class="col-10">
-        <router-view />
+        <router-view/>
       </div>
     </div>
   </div>
