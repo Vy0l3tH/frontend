@@ -6,7 +6,8 @@ import Register from './views/Register.vue';
 
 Vue.use(Router);
 
-export default new Router({
+
+  const router = new Router({
   mode: "history",
   routes: [
     {
@@ -46,9 +47,10 @@ export default new Router({
       name: "addSoignant",
       component: () => import("./components/AddSoignant")
     },
+    {
       path: "/addForm",
       name: "Create form",
-      component: () => import("./components/FormEditor")
+      component: () => import("./components/FormEditor.vue")
     },{
       path: '/',
       name: 'home',
@@ -83,6 +85,21 @@ export default new Router({
     
   ]
 });
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+export default router
 
 
     

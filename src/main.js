@@ -21,11 +21,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
-Vue.use(VeeValidate);
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('FreeText', freeText);
 Vue.config.productionTip = false
-
+Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

@@ -20,7 +20,7 @@
         striped
         hover
         :items="patients"
-        :fields="fields"
+        :fields="fieldsDef"
       >
        <template #cell(plop)  >
         
@@ -45,7 +45,7 @@ export default {
   name: "patients-list",
   data() {
     return {
-      fields: [
+      fieldsDef: [
          
         {
           key: "doc.name",

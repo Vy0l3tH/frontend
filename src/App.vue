@@ -1,18 +1,23 @@
 <template>
   <div id="app container">
-    <div class="row py-5 bg-info">
+    <div class="row py-3 bg-info">
       <div class="col-2">
-        <span style="">HOMELINK</span>
+        <span class= "navbar-brand">HOMELINK</span>
       </div>
       <div class="col-9">
-        <span>HEADER avec plein de trucs</span>
+       
       </div>
-      <div class="col-1">
-        <span>Options</span>
+      <div v-if="currentUser" class="navbar-nav ml-auto col-1">
+      
+        <li class="nav-item">
+          <a class="nav-link bg-info" href @click.prevent="logOut">
+            <font-awesome-icon icon="sign-out-alt"/>LogOut
+          </a>
+        </li>
       </div>
     </div>
     <div class="row">
-      <div class="col-2 bg-info">
+      <div class="col-1 bg-info" v-if="currentUser">
         <b-nav vertical class="navbar navbar-dark bg-info">
           <div class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -30,24 +35,14 @@
                 >Soignants</router-link
               >
             </li>
-            <li><br><br><br></li>
             <li class="nav-item">
-              <router-link to="/logout" class="nav-link"
-                >Déconnexion</router-link
-              >
-              <router-link to="/login" class="nav-link"
-                >Login</router-link
-              >
-            </li>
-             <li class="nav-item">
-              <router-link to="/addForm" class="nav-link"
-                >Add form</router-link >
-            </li>
+              <router-link to="/addForm" class="nav-link">Add form</router-link>
+            </li>            
           </div>
         </b-nav>
       </div>
-      <div class="col-10">
-        <router-view/>
+      <div :class="currentUser ? 'col-10' : 'col-12' " >
+        <router-view />
       </div>
     </div>
   </div>
@@ -55,7 +50,22 @@
 
 <script>
 export default {
-  name: "app",
+ data() {
+   return {
+  active:"col-12"
+ }}
+  ,
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
