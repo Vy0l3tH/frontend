@@ -27,6 +27,17 @@ Vue.use(Router);
       component: () => import("./components/PatientFormulairesList")
     },
     {
+      path: "/admins",
+      alias: "/admins",
+      name: "admins",
+      component: () => import("./components/AdminList")
+    },
+    {
+      path: "/addPatient",
+      name: "addPatient",
+      component: () => import("./components/AddAdmin")
+    },
+    {
       path: "/addFormulaire",
       name: "addFormulaire",
       component: () => import("./components/AddFormulaire")

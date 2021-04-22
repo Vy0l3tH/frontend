@@ -15,14 +15,14 @@
         </form> 
     </b-row>
     <b-row>
-      <b-col cols="12" align-h="start">
+      <b-col cols="16" align-h="start">
       <b-table
         striped
         hover
         :items="patients"
         :fields="fieldsDef"
       >
-       <template #cell(plop)  >
+       <template #cell(plop)>
         
      
         <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
@@ -59,7 +59,7 @@ export default {
         },
         {
           key: "doc.mailAdress",
-          label: "First name",
+          label: "Email",
           sortable: false,
         },
         {
@@ -76,10 +76,68 @@ export default {
           key: "doc.phoneNumber",
           label: "Phone number",
           sortable: false,
-        }, {key: "plop",
-          label: "",
+        }, 
+
+            {
+          key: "doc.active",
+          label: "Active",
           sortable: false,
-        },
+        }, 
+            {
+          key: "doc.username",
+          label: "Username",
+          sortable: false,
+        }, 
+            {
+          key: "doc.password",
+          label: "Password",
+          sortable: false,
+        }, 
+            {
+          key: "doc.role",
+          label: "Role",
+          sortable: false,
+        },   
+        {
+          key: "doc.patientNumber",
+          label: "Patient Number",
+          sortable: true,
+        }, 
+        {
+          key: "doc.attributionGroup",
+          label: "Groupe d'attribution",
+          sortable: true,
+        }, 
+                {
+          key: "doc.followUpType",
+          label: "Type de suivi",
+          sortable: false,
+        }, 
+                {
+          key: "doc.alarm",
+          label: "Alarme",
+          sortable: false,
+        }, 
+                {
+          key: "doc.gdprAgreement",
+          label: "Consentement RGPD",
+          sortable: false,
+        }, 
+                {
+          key: "doc.rswPublication",
+          label: "Publication RSW",
+          sortable: false,
+        }, 
+                {
+          key: "doc.riskLevel",
+          label: "Niveau de risque",
+          sortable: false,
+        }, 
+        {
+          key: "plop",
+          label: "Edit / Delete",
+          sortable: false,
+        },      
           
       ],
       patients: [],

@@ -1,11 +1,10 @@
 <template>
   <b-container fluid>
-
     <b-row>
       <b-col cols="12" align-h="start">
-          <router-link to="/addSoignant/">
-            <a class="m-3 btn btn-sm btn-info" :href="'/addSoignant/'">
-              New soignant
+          <router-link to="/addAdmin/">
+            <a class="m-3 btn btn-sm btn-info" :href="'/addAdmin/'">
+              New admin
             </a>
           </router-link>
       </b-col>
@@ -20,16 +19,16 @@
       <b-table
         striped
         hover
-        :items="soignants"
+        :items="admins"
         :fields="fieldsDef"
       >
        <template #cell(plop)>
         
      
-        <b-button class="btn btn-sm btn-info mr-2" :href="'/addSoignant/'">
+        <b-button class="btn btn-sm btn-info mr-2" :href="'/addAdmin/'">
          Edit
         </b-button>
-         <b-button class="btn btn-sm btn-info " :href="'/addSoignant/'">
+         <b-button class="btn btn-sm btn-info " :href="'/addAdmin/'">
          Delete
         </b-button>
       </template>
@@ -40,14 +39,14 @@
   </b-container>
 </template>
 <script>
-import SoignantDataService from "../services/SoignantDataService";
+import AdminDataService from "../services/AdminDataService";
 
 export default {
-  name: "soignants-list",
+  name: "admins-list",
   data() {
     return {
-  
       fieldsDef: [
+         
         {
           key: "doc.name",
           label: "Name",
@@ -60,17 +59,12 @@ export default {
         },
         {
           key: "doc.mailAdress",
-          label: "Email",
+          label: "First name",
           sortable: false,
         },
         {
           key: "doc.adress",
           label: "Adress",
-          sortable: false,
-        },
-        {
-          key: "doc.birthDate",
-          label: "Birth date",
           sortable: false,
         },
         {
@@ -98,41 +92,45 @@ export default {
           key: "doc.role",
           label: "Role",
           sortable: false,
-        }, 
+        },   
         {
-          key: "doc.attributionGroup",
-          label: "Groupe d'attribution",
-          sortable: true,
-        }, 
-                {
-          key: "doc.caregiverType",
-          label: "Type de soignant",
-          sortable: true,
-        }, 
-                {
-          key: "doc.institution",
-          label: "Institution",
+          key: "doc.uidHospital",
+          label: "uid Hôpital",
           sortable: false,
-        },
+        }, 
+
+        {
+          key: "doc.inamiNumber",
+          label: "Numéro INAMI",
+          sortable: false,
+        },  
+        {
+          key: "doc.speciality",
+          label: "Spécialité",
+          sortable: false,
+        },  
+        
+
         {
           key: "plop",
           label: "Edit / Delete",
           sortable: false,
-        },
+        },    
+
           
       ],
-      soignants: [],
-      currentSoignant: null,
+      admins: [],
+      currentAdmin: null,
       currentIndex: -1,
       title: "",
       aaze: null,
     };
   },
   methods: {
-    retrieveSoignants() {
-      SoignantDataService.getAll()
+    retrieveAdmins() {
+      AdminDataService.getAll()
         .then((response) => {
-          this.soignants = response.data.rows;
+          this.admins = response.data.rows;
           console.log(response.data);
         })
         .catch((e) => {
@@ -141,18 +139,18 @@ export default {
     },
 
     refreshList() {
-      this.retrieveSoignants();
-      this.currentSoignant = null;
+      this.retrieveAdmins();
+      this.currentAdmin = null;
       this.currentIndex = -1;
     },
 
-    setActiveSoignant(soignant, index) {
-      this.currentSoignant = soignant;
+    setActiveAdmin(admin, index) {
+      this.currentAdmin = admin;
       this.currentIndex = index;
     },
 
-    removeAllSoignants() {
-      SoignantDataService.deleteAll()
+    removeAllAdmins() {
+      AdminDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
           this.refreshList();
@@ -163,9 +161,9 @@ export default {
     },
 
     searchTitle() {
-      SoignantDataService.findByTitle(this.title)
+      AdminDataService.findByTitle(this.title)
         .then((response) => {
-          this.soignants = response.data;
+          this.admins = response.data;
           console.log(response.data);
         })
         .catch((e) => {
@@ -174,7 +172,7 @@ export default {
     },
   },
   mounted() {
-    this.retrieveSoignants();
+    this.retrieveAdmins();
   },
 };
 </script>

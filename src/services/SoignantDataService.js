@@ -2,16 +2,16 @@ import http from "../http-common";
 
 class SoignantataService {
   getAll() {
-    return http.get("/soignants");
+    return http.get("/caregivers");
   }
   create(data) {
-    return http.post("/soignants", data);
+    return http.post("/caregivers", data);
   }
   getForms(id) {
-    return http.get(`/soignants/${id}/form`);
+    return http.get(`/caregivers/${id}/form`);
   }
   addForms(id,data) {
-    return http.post(`/soignants/${id}/form`,data);
+    return http.post(`/caregivers/${id}/form`,data);
   }
 }
 

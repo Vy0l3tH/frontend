@@ -26,13 +26,19 @@
               >
             </li>
             <li class="nav-item">
-              <router-link to="/formulaires" class="nav-link"
-                >Formulaires</router-link
+              <router-link to="/soignants" class="nav-link"
+                >Soignants</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link to="/soignants" class="nav-link"
-                >Soignants</router-link
+              <router-link to="/admins" class="nav-link"
+                >Administrateurs</router-link
+              >
+            </li>          
+            
+            <li class="nav-item">
+              <router-link to="/formulaires" class="nav-link"
+                >Formulaires</router-link
               >
             </li>
             <li class="nav-item">
