@@ -141,10 +141,8 @@
           placeholder="Enter Attribution Group"
           required>
         </b-form-input>
-      </b-form-group>
-      <b-link to="/patients">
-      </b-link>                                                                                                         
-      <b-button type="submit" class="mr-2" variant="info">Submit</b-button>
+      </b-form-group>                                                                      
+          <b-button type="submit" class="mr-2" variant="info">Submit</b-button>   
       <b-button type="reset" variant="info">Reset</b-button>
     </b-form>
     </b-row>
