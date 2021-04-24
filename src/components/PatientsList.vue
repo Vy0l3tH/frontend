@@ -48,88 +48,78 @@ export default {
       fieldsDef: [
          
         {
-          key: "doc.name",
+          key: "name",
           label: "Name",
           sortable: true,
         },
         {
-          key: "doc.firstName",
+          key: "firstName",
           label: "First name",
           sortable: false,
         },
         {
-          key: "doc.mailAdress",
+          key: "mailAdress",
           label: "Email",
           sortable: false,
         },
         {
-          key: "doc.adress",
+          key: "adress",
           label: "Adress",
           sortable: false,
         },
         {
-          key: "doc.birthDate",
+          key: "birthDate",
           label: "Birth date",
           sortable: false,
         },
         {
-          key: "doc.phoneNumber",
+          key: "phoneNumber",
           label: "Phone number",
           sortable: false,
         }, 
 
             {
-          key: "doc.active",
+          key: "active",
           label: "Active",
           sortable: false,
         }, 
             {
-          key: "doc.username",
+          key: "username",
           label: "Username",
           sortable: false,
         }, 
-            {
-          key: "doc.password",
-          label: "Password",
-          sortable: false,
-        }, 
-            {
-          key: "doc.role",
-          label: "Role",
-          sortable: false,
-        },   
         {
-          key: "doc.patientNumber",
+          key: "patientNumber",
           label: "Patient Number",
           sortable: true,
         }, 
         {
-          key: "doc.attributionGroup",
+          key: "attributionGroup",
           label: "Groupe d'attribution",
           sortable: true,
         }, 
                 {
-          key: "doc.followUpType",
+          key: "followUpType",
           label: "Type de suivi",
           sortable: false,
         }, 
                 {
-          key: "doc.alarm",
+          key: "alarm",
           label: "Alarme",
           sortable: false,
         }, 
                 {
-          key: "doc.gdprAgreement",
+          key: "gdprAgreement",
           label: "Consentement RGPD",
           sortable: false,
         }, 
                 {
-          key: "doc.rswPublication",
+          key: "rswPublication",
           label: "Publication RSW",
           sortable: false,
         }, 
                 {
-          key: "doc.riskLevel",
+          key: "riskLevel",
           label: "Niveau de risque",
           sortable: false,
         }, 
@@ -151,7 +141,8 @@ export default {
     retrievePatients() {
       PatientDataService.getAll()
         .then((response) => {
-          this.patients = response.data.rows;
+          console.log(response.data);
+          this.patients = response.data.items;
           console.log(response.data);
         })
         .catch((e) => {

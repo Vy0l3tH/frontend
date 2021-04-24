@@ -48,64 +48,54 @@ export default {
       fieldsDef: [
          
         {
-          key: "doc.name",
+          key: "name",
           label: "Name",
           sortable: true,
         },
         {
-          key: "doc.firstName",
+          key: "firstName",
           label: "First name",
           sortable: false,
         },
         {
-          key: "doc.mailAdress",
+          key: "mailAdress",
           label: "First name",
           sortable: false,
         },
         {
-          key: "doc.adress",
+          key: "adress",
           label: "Adress",
           sortable: false,
         },
         {
-          key: "doc.phoneNumber",
+          key: "phoneNumber",
           label: "Phone number",
           sortable: false,
         }, 
 
             {
-          key: "doc.active",
+          key: "active",
           label: "Active",
           sortable: false,
         }, 
             {
-          key: "doc.username",
+          key: "username",
           label: "Username",
-          sortable: false,
-        }, 
-            {
-          key: "doc.password",
-          label: "Password",
-          sortable: false,
-        }, 
-            {
-          key: "doc.role",
-          label: "Role",
           sortable: false,
         },   
         {
-          key: "doc.uidHospital",
+          key: "uidHospital",
           label: "uid Hôpital",
           sortable: false,
         }, 
 
         {
-          key: "doc.inamiNumber",
+          key: "inamiNumber",
           label: "Numéro INAMI",
           sortable: false,
         },  
         {
-          key: "doc.speciality",
+          key: "speciality",
           label: "Spécialité",
           sortable: false,
         },  
@@ -130,7 +120,7 @@ export default {
     retrieveAdmins() {
       AdminDataService.getAll()
         .then((response) => {
-          this.admins = response.data.rows;
+          this.admins = response.data.items;
           console.log(response.data);
         })
         .catch((e) => {
