@@ -2,10 +2,10 @@
   <div id="app container">
     <div class="row py-3 bg-info">
       <div class="col-2">
-        <span class= "navbar-brand">HOMELINK</span>
+        <span class= "navbar-brand">HOMELINK </span>
       </div>
-      <div class="col-9">
-       
+      <div  v-if="currentUser" class="col-9">
+       <span class= "navbar-brand">{{currentUser.role}} MODE</span>
       </div>
       <div v-if="currentUser" class="navbar-nav ml-auto col-1">
       
@@ -63,8 +63,9 @@ export default {
   ,
   computed: {
     currentUser() {
-      console.log(this.$store.state.auth.user)
-      return this.$store.state.auth.user;
+      if (this.$store.state.auth.user)
+        return this.$store.state.auth.user;
+        else return null;
     },
   },
   methods: {
