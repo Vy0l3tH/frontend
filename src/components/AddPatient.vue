@@ -218,21 +218,37 @@ export default {
       this.patient = {};
     },
     onSubmit(event) {
-        event.preventDefault()
-        this.savePatient()
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
+      event.preventDefault()
+      this.savePatient()
+      this.$router.push('/patients')
+    },
+    onReset(event) {
+      event.preventDefault()
+      // Reset our form values
 
-        this.patient.name = ''
+      this.patient.name = ''      
+      this.patient.firstName = ''
+      this.patient.mailAdress = ''
+      this.patient.adress = ''
+      this.patient.birthDate = ''
+      this.patient.phoneNumber = ''
+      this.patient.active = 1
+      this.patient.username = ''
+      this.patient.password = ''
+      this.patient.patientNumber = ''
+      this.patient.attributionGroup = ''
+      this.patient.followUpType = ''
+      this.patient.alarm = 1
+      this.patient.gdprAgreement = 0
+      this.patient.rswPublication = 0
+      this.patient.riskLevel = ''
 
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
+      // Trick to reset/clear native browser form validation state
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
+    }
     
   }
 };

@@ -22,27 +22,21 @@
         :items="patients"
         :fields="fieldsDef"
       >
-       <template #cell(plop)>
-        
-     
-        <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
-         Edit
-        </b-button>
-         <b-button class="btn btn-sm btn-info " @click="removePatient(item.id)">
-         Delete
-        </b-button>
-
-
+       <template #cell(plop)="data"> 
+          <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
+          Edit
+          </b-button>
+          <b-button class="btn btn-sm btn-info " v-on:click="removePatient(data.item.id)">
+          Delete
+          </b-button>
       </template>
-      <template #row-details="row">
-          <b-col>{{ row.item.name }}</b-col>
-      </template>
-
       </b-table>
       
       </b-col>
     </b-row>
+    
   </b-container>
+  
 </template>
 <script>
 import PatientDataService from "../services/PatientDataService";
@@ -51,6 +45,7 @@ export default {
   name: "patients-list",
   data() {
     return {
+      
       fieldsDef: [
         {
           key: "name",
