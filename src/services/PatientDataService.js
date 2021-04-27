@@ -7,6 +7,9 @@ class PatientataService {
   create(data) {
     return http.post("/patients", data);
   }
+  deletePatient(id) {
+    return http.delete(`/patients/${id}`);
+  }
   getForms(id) {
     return http.get(`/patients/${id}/form`);
   }

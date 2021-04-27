@@ -28,10 +28,16 @@
         <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
          Edit
         </b-button>
-         <b-button class="btn btn-sm btn-info " :href="'/addPatient/'">
+         <b-button class="btn btn-sm btn-info " @click="removePatient(item.id)">
          Delete
         </b-button>
+
+
       </template>
+      <template #row-details="row">
+          <b-col>{{ row.item.name }}</b-col>
+      </template>
+
       </b-table>
       
       </b-col>
@@ -46,7 +52,6 @@ export default {
   data() {
     return {
       fieldsDef: [
-         
         {
           key: "doc.name",
           label: "Name",
@@ -172,6 +177,17 @@ export default {
 
     removeAllPatients() {
       PatientDataService.deleteAll()
+        .then((response) => {
+          console.log(response.data);
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    removePatient(id) {
+      PatientDataService.deletePatient(id)
         .then((response) => {
           console.log(response.data);
           this.refreshList();
