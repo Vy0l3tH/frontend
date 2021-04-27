@@ -23,7 +23,7 @@
         :fields="fieldsDef"
       >
        <template #cell(plop)="data"> 
-          <b-button class="btn btn-sm btn-info mr-2" :href="'/addPatient/'">
+          <b-button class="btn btn-sm btn-info mr-2" :href="'AddPatient?id='+ `${data.item.id}`">
           Edit
           </b-button>
           <b-button class="btn btn-sm btn-info " v-on:click="removePatient(data.item.id)">

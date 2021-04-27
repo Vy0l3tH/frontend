@@ -4,6 +4,12 @@ class PatientataService {
   getAll() {
     return http.get("/patients");
   }
+  getPatient(id){
+    return http.get(`/patients/${id}`);
+  }
+  updatePatient(id, data){
+    return http.put(`/patients/${id}`, data);
+  }
   create(data) {
     return http.post("/patients", data);
   }

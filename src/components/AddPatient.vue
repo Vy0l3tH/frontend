@@ -78,14 +78,6 @@
         </b-form-input>
         <div v-if="passwordError" class="error">!! {{passwordError}}</div>
       </b-form-group>
-      <b-form-group id="input-group-10" label="Rôle:" label-for="roleInput">  
-        <b-form-input
-          id="roleInput"
-          v-model="patient.role"
-          disabled
-          required>
-        </b-form-input>
-      </b-form-group>
       <b-form-group id="input-group-11" label="Patient Number:" label-for="patientNumberInput">  
         <b-form-input
           id="patientNumberInput"
@@ -171,7 +163,6 @@ export default {
         active: 1,
         username: "",
         password: "",
-        role: "patient",
         patientNumber: "",
         attributionGroup: "",
         followUpType: "",
@@ -180,7 +171,11 @@ export default {
         rswPublication: 0,
         riskLevel: "",
       },
-      submitted: false
+      submitted: false,
+      patients: [],
+      passwordError: null,
+      modifyForm: false,
+
     };
   },
   methods: {
@@ -200,16 +195,20 @@ export default {
         attributionGroup: this.patient.attributionGroup,
         followUpType: this.patient.followUpType,
         alarm: this.patient.alarm,
-        gdprAgreement: this.patient. gdprAgreement,
+        gdprAgreement: this.patient.gdprAgreement,
         rswPublication: this.patient.rswPublication,
         riskLevel: this.patient.riskLevel,
       };
+      if(this.modifyForm)
+        PatientDataService.updatePatient(this.$route.query.id, data)
+      else
+        PatientDataService.create(data)
 
-      PatientDataService.create(data)
         .then(response => {
           this.patient._id = response.data._id;
           console.log(response.data);
           this.submitted = true;
+          console.log(this.submitted)
         })
         .catch(e => {
           console.log(e);
@@ -226,8 +225,6 @@ export default {
       // Vérifie les erreurs de validation du formulaire
       this.passwordError = this.patient.password.length > 5 ?
        '' : 'Password must be at least 6 chars long'
-      //force l'update des composants (sinon les erreurs n'apparaissent pas)
-      this.$forceUpdate();
       if(!this.passwordError)
       { 
       this.savePatient()
@@ -258,11 +255,32 @@ export default {
       // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {
-        this.show = true
+      this.show = true
       })
+    },
+
+    retrievePatient(id) {
+    PatientDataService.getPatient(id)
+      .then((response) => {
+        console.log(response.data);
+        this.patient = response.data;
+        console.log(response.data);
+        console.log(this.modifyForm)
+        if(!this.$route.query.id == '')
+          this.modifyForm= true;
+        console.log(this.modifyForm)
+
+      })
+      .catch((e) => {
+        console.log(e);
+      });
     }
     
-  }
+  },
+  mounted() {
+    if(!this.$route.query.id == '')
+      this.retrievePatient(this.$route.query.id);
+  },
 };
 </script>
 
