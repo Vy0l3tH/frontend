@@ -21,6 +21,7 @@
       <b-form-group id="input-group-3" label="Email address:" label-for="emailInput">  
         <b-form-input
           id="emailInput"
+          type ="email"
           v-model="patient.mailAdress"
           placeholder="Enter email address"
           required>
@@ -70,10 +71,12 @@
       <b-form-group id="input-group-9" label="Password:" label-for="passwordInput">  
         <b-form-input
           id="passwordInput"
+          type=password
           v-model="patient.password"
           placeholder="Enter password"
           required>
         </b-form-input>
+        <div v-if="passwordError" class="error">!! {{passwordError}}</div>
       </b-form-group>
       <b-form-group id="input-group-10" label="Rôle:" label-for="roleInput">  
         <b-form-input
@@ -218,9 +221,18 @@ export default {
       this.patient = {};
     },
     onSubmit(event) {
+      //empêche le comportement normal du bouton submit
       event.preventDefault()
+      // Vérifie les erreurs de validation du formulaire
+      this.passwordError = this.patient.password.length > 5 ?
+       '' : 'Password must be at least 6 chars long'
+      //force l'update des composants (sinon les erreurs n'apparaissent pas)
+      this.$forceUpdate();
+      if(!this.passwordError)
+      { 
       this.savePatient()
       this.$router.push('/patients')
+      }
     },
     onReset(event) {
       event.preventDefault()
@@ -258,5 +270,8 @@ export default {
 .submit-form {
   max-width: 300px;
   margin: auto;
+}
+.error {
+  color: red;
 }
 </style>
