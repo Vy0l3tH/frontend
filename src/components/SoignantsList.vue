@@ -49,68 +49,58 @@ export default {
   
       fieldsDef: [
         {
-          key: "doc.name",
+          key: "name",
           label: "Name",
           sortable: true,
         },
         {
-          key: "doc.firstName",
+          key: "firstName",
           label: "First name",
           sortable: false,
         },
         {
-          key: "doc.mailAdress",
+          key: "mailAdress",
           label: "Email",
           sortable: false,
         },
         {
-          key: "doc.adress",
+          key: "adress",
           label: "Adress",
           sortable: false,
         },
         {
-          key: "doc.birthDate",
+          key: "birthDate",
           label: "Birth date",
           sortable: false,
         },
         {
-          key: "doc.phoneNumber",
+          key: "phoneNumber",
           label: "Phone number",
           sortable: false,
         }, 
 
             {
-          key: "doc.active",
+          key: "active",
           label: "Active",
           sortable: false,
         }, 
             {
-          key: "doc.username",
-          label: "Username",
-          sortable: false,
-        }, 
-            {
-          key: "doc.password",
-          label: "Password",
-          sortable: false,
-        }, 
-            {
-          key: "doc.role",
+          key: "role",
           label: "Role",
           sortable: false,
         }, 
         {
-          key: "doc.attributionGroup",
+          key: "attributionGroup",
           label: "Groupe d'attribution",
           sortable: true,
         }, 
                 {
-          key: "doc.caregiverType",
+          key: "caregiverType",
           label: "Type de soignant",
           sortable: true,
         }, 
                 {
-          key: "doc.institution",
+          key: "institution",
           label: "Institution",
           sortable: false,
         },
@@ -132,7 +122,7 @@ export default {
     retrieveSoignants() {
       SoignantDataService.getAll()
         .then((response) => {
-          this.soignants = response.data.rows;
+          this.soignants = response.data.items;
           console.log(response.data);
         })
         .catch((e) => {
