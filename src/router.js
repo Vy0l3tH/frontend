@@ -24,7 +24,7 @@ Vue.use(Router);
     {
       path: "/viewPatient/:id",
       name: "viewPatient",
-      component: () => import("./components/PatientFormulairesList")
+      component: () => import("./components/PatientFormsList")
     },
     {
       path: "/admins",
@@ -38,15 +38,15 @@ Vue.use(Router);
       component: () => import("./components/AddAdmin")
     },
     {
-      path: "/addFormulaire",
-      name: "addFormulaire",
-      component: () => import("./components/AddFormulaire")
+      path: "/addForm",
+      name: "addForm",
+      component: () => import("./components/AddForm")
     }
     ,
     {
-      path: "/formulaires",
-      name: "formulaires",
-      component: () => import("./components/FormulairesList")
+      path: "/forms",
+      name: "forms",
+      component: () => import("./components/FormsList")
     },
     {
       path: "/soignants",
@@ -59,10 +59,6 @@ Vue.use(Router);
       component: () => import("./components/AddSoignant")
     },
     {
-      path: "/addForm",
-      name: "Create form",
-      component: () => import("./components/FormEditor.vue")
-    },{
       path: '/',
       name: 'home',
       component: Home

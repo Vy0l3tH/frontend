@@ -222,7 +222,7 @@ export default {
     onSubmit(event) {
       //empêche le comportement normal du bouton submit
       event.preventDefault()
-      // Vérifie les erreurs de validation du formulaire
+      // Vérifie les erreurs de validation du form
       this.passwordError = this.patient.password.length > 5 ?
        '' : 'Password must be at least 6 chars long'
       if(!this.passwordError)

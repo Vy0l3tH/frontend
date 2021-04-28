@@ -3,7 +3,7 @@ import App from './App.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import store from './store';
 import router from './router'
-import freeText from './components/FreeText.vue'
+import freeText from './components/FormBlocks/FreeText.vue'
 import {VueFormBuilderPlugin} from 'v-form-builder'
 import 'v-form-builder/dist/v-form-builder.css' //load CSS from your App
 // Import Bootstrap an BootstrapVue CSS files (order is important)

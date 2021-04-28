@@ -7,11 +7,10 @@
       <div  v-if="currentUser" class="col-9">
        <span class= "navbar-brand">{{currentUser.role}} MODE</span>
       </div>
-      <div v-if="currentUser" class="navbar-nav ml-auto col-1">
-      
+      <div v-if="currentUser" class="navbar-nav ml-auto col-1">  
         <li class="nav-item">
           <a class="nav-link bg-info" href @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt"/>LogOut
+            <font-awesome-icon icon="sign-out-alt"/>Logout
           </a>
         </li>
       </div>
@@ -37,13 +36,10 @@
             </li>          
             
             <li class="nav-item">
-              <router-link to="/formulaires" class="nav-link"
-                >Formulaires</router-link
+              <router-link to="/forms" class="nav-link"
+                >Forms</router-link
               >
-            </li>
-            <li class="nav-item">
-              <router-link to="/addForm" class="nav-link">Add form</router-link>
-            </li>            
+            </li>           
           </div>
         </b-nav>
       </div>
