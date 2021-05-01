@@ -10,13 +10,29 @@
       </b-col>
     </b-row>
     <b-row>
-      <form>
-        <input type="text" class="form-control" value="Recherche" />
-      </form>
+<!-- filtre sur l'ensemble des données -->
+        <b-form-group
+          label-for="filter-input"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Recherche"
+            >
+            </b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Effacer</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+<!-- fin du filtre -->
+
     </b-row>
     <b-row>
       <b-col cols="16" align-h="start">
-        <b-table striped hover :items="patients" :fields="fieldsDef">
+        <b-table striped hover  :items="patients" :fields="fieldsDef" :filter="filter" >
           <template #cell(plop)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
@@ -131,6 +147,7 @@ export default {
       currentIndex: -1,
       title: "",
       aaze: null,
+      filter: null,
     };
   },
   methods: {
