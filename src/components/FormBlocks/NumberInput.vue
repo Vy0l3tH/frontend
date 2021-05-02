@@ -1,5 +1,5 @@
 <template>
-  <div class="FreeText">
+  <div class="NumberInput">
     <b-form v-if="editionmode">
       <label class="mr-sm-2" for="inline-form-custom-select-pref"
         >Label</label
@@ -19,6 +19,7 @@
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder=""
         v-model="block.value"
+        type="number"
       ></b-form-input>
     </b-form>
   </div>
@@ -29,6 +30,6 @@ export default {
     block: Object,
     editionmode: Boolean,
   },
-  name: "freeText",
+  name: "numberInput",
 };
 </script>

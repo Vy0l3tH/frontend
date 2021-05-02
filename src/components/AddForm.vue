@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <button type="button" @click="saveForm" class="btn bg-info btn-success">
+    <button type="button" @click="saveForm" class="btn bg-info btn-success m-2">
       Save this form
     </button>
     <button
@@ -21,23 +21,30 @@
           >
           </b-form-input>
         </b-form-group>
-        <b-form-group id="input-group-1" label="Champs:" label-for="content">
-          <button
-            type="button"
-            @click="addInput"
-            class="bg-info btn btn-success"
+        <b-form-select v-model="selectedControl">
+          <b-select-option
+            v-for="component in componentList"
+            v-bind:key="component.value"
+            v-bind:value="component.value"
           >
-            Add
-          </button>
-
+            {{ component.name }}
+          </b-select-option>
+          <!-- objet littéral en ligne -->
+        </b-form-select>
+        <button type="button" @click="addInput" class="bg-info btn btn-success my-2">
+          Add
+        </button>
+        <b-form-group id="input-group-1" label="Fields:" label-for="content">
           <div v-if="currentForm">
             <template v-for="block in currentForm.content">
-              <component
-                :editionmode="editionmode"
-                :is="block.component"
-                :block="block"
-                :key="block._uid"
-              ></component>
+              <div :key="block._uid" class="border p-2 mb-2">
+                <h5>{{ block.component }}</h5>
+                <component
+                  :editionmode="editionmode"
+                  :is="block.component"
+                  :block="block"
+                ></component>
+              </div>
             </template>
           </div>
         </b-form-group>
@@ -52,6 +59,12 @@ export default {
     return {
       editionmode: true,
       name: "MyAdminProMaxComponent",
+      selectedControl: "freeText",
+      componentList: [
+        { name: "Free text", value: "freeText" },
+        { name: "Combo box", value: "comboBox" },
+        { name: "Number input", value: "numberInput" },
+      ],
       currentForm: {
         content: [],
       },
@@ -60,9 +73,10 @@ export default {
   methods: {
     addInput() {
       this.currentForm.content.push({
-        component: "freeText",
+        component: this.selectedControl,
         headline: "",
         value: "",
+        options: [],
       });
     },
     switchEditionMode() {
