@@ -4,6 +4,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import store from './store';
 import router from './router'
 import freeText from './components/FormBlocks/FreeText.vue'
+import higherThan from './components/AlertBlocks/HigherThan.vue'
 import comboBox from './components/FormBlocks/ComboBox.vue'
 import numberInput from './components/FormBlocks/NumberInput.vue'
 import {VueFormBuilderPlugin} from 'v-form-builder'
@@ -22,11 +23,16 @@ import {
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 
+import UUID from "vue-uuid";
+
+
 library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
+Vue.use(UUID);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('FreeText', freeText);
 Vue.component('ComboBox', comboBox);
+Vue.component('HigherThan', higherThan);
 Vue.component('NumberInput', numberInput);
 Vue.config.productionTip = false
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})

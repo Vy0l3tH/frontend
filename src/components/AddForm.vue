@@ -31,19 +31,38 @@
           </b-select-option>
           <!-- objet littéral en ligne -->
         </b-form-select>
-        <button type="button" @click="addInput" class="bg-info btn btn-success my-2">
+        <button
+          type="button"
+          @click="addInput"
+          class="bg-info btn btn-success my-2"
+        >
           Add
         </button>
         <b-form-group id="input-group-1" label="Fields:" label-for="content">
           <div v-if="currentForm">
             <template v-for="block in currentForm.content">
-              <div :key="block._uid" class="border p-2 mb-2">
+              <div :key="block.uid" class="border p-2 mb-2">
                 <h5>{{ block.component }}</h5>
                 <component
                   :editionmode="editionmode"
                   :is="block.component"
                   :block="block"
                 ></component>
+                <button
+                  type="button"
+                  @click="addAlert(block.uid)"
+                  class="bg-danger btn btn-success my-2"
+                >
+                  Add alert
+                </button>
+                <template v-for="alert in block.alerts">
+                  <component
+                    :key="alert.uid"
+                    :is="alert.component"
+                    :cont="alert"
+                  ></component>
+                  
+                </template>
               </div>
             </template>
           </div>
@@ -54,9 +73,11 @@
 </template>
 <script>
 import FormDataService from "../services/FormDataService";
+import { uuid } from "vue-uuid";
 export default {
   data() {
     return {
+      uuid: uuid.v1(),
       editionmode: true,
       name: "MyAdminProMaxComponent",
       selectedControl: "freeText",
@@ -74,10 +95,24 @@ export default {
     addInput() {
       this.currentForm.content.push({
         component: this.selectedControl,
+        uid: this.$uuid.v1(),
         headline: "",
         value: "",
         options: [],
+        alerts: [],
       });
+    },
+    addAlert(id) {
+      var found = this.currentForm.content.findIndex(function (post) {
+        if (post.uid == id) return true;
+      });
+      alert(this.currentForm.content[found].uid);
+      this.currentForm.content[found].alerts.push({
+        component: "higherThan",
+        uid: this.$uuid.v1(),
+        value: "",
+      });
+      alert(found);
     },
     switchEditionMode() {
       this.editionmode = !this.editionmode;
