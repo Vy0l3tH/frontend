@@ -1,11 +1,20 @@
 import http from "../http-common";
 
-class AdminataService {
+class AdminDataService {
   getAll() {
     return http.get("/administrators");
   }
+  getAdmin(id){
+    return http.get(`/administrators/${id}`);
+  }
+  updateAdmin(id, data){
+    return http.put(`/administrators/${id}`, data);
+  }
   create(data) {
     return http.post("/administrators", data);
+  }
+  deleteAdmin(id) {
+    return http.delete(`/administrators/${id}`);
   }
   getForms(id) {
     return http.get(`/administrators/${id}/form`);
@@ -15,4 +24,4 @@ class AdminataService {
   }
 }
 
-export default new AdminataService();
+export default new AdminDataService();

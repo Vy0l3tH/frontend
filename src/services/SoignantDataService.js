@@ -1,8 +1,17 @@
 import http from "../http-common";
 
-class SoignantataService {
+class SoignantDataService {
   getAll() {
     return http.get("/caregivers");
+  }
+  getSoignant(id){
+    return http.get(`/caregivers/${id}`);
+  }
+  updateSoignant(id, data){
+    return http.put(`/caregivers/${id}`, data);
+  }
+  deleteSoignant(id) {
+    return http.delete(`/caregivers/${id}`);
   }
   create(data) {
     return http.post("/caregivers", data);
@@ -15,4 +24,4 @@ class SoignantataService {
   }
 }
 
-export default new SoignantataService();
+export default new SoignantDataService();

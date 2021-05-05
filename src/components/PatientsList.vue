@@ -107,11 +107,6 @@ export default {
           sortable: true,
         },
         {
-          key: "attributionGroup",
-          label: "Groupe d'attribution",
-          sortable: true,
-        },
-        {
           key: "followUpType",
           label: "Type de suivi",
           sortable: false,

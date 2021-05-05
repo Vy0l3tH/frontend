@@ -10,30 +10,43 @@
       </b-col>
     </b-row>
     <b-row>
-        <form>  
-            <input type="text" class="form-control" value="Recherche">
-        </form> 
+        <!-- filtre sur l'ensemble des données -->
+        <b-form-group
+          label-for="filter-input"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Recherche"
+            >
+            </b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Effacer</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+<!-- fin du filtre -->
     </b-row>
     <b-row>
       <b-col cols="16" align-h="start">
-      <b-table
-        striped
-        hover
-        :items="admins"
-        :fields="fieldsDef"
-      >
-       <template #cell(plop)>
-        
-     
-        <b-button class="btn btn-sm btn-info mr-2" :href="'/addAdmin/'">
-         Edit
-        </b-button>
-         <b-button class="btn btn-sm btn-info " :href="'/addAdmin/'">
-         Delete
-        </b-button>
-      </template>
-      </b-table>
-      
+        <b-table striped hover  :items="admins" :fields="fieldsDef" :filter="filter" >
+          <template #cell(plop)="data">
+            <b-button
+              class="btn btn-sm btn-info mr-2"
+              :href="'AddAdmin?id=' + `${data.item.id}`"
+            >
+              Edit
+            </b-button>
+            <b-button
+              class="btn btn-sm btn-info"
+              v-on:click="removeAdmin(data.item.id)"
+            >
+              Delete
+            </b-button>
+          </template>
+        </b-table>
       </b-col>
     </b-row>
   </b-container>
@@ -59,12 +72,7 @@ export default {
         },
         {
           key: "mailAdress",
-          label: "First name",
-          sortable: false,
-        },
-        {
-          key: "adress",
-          label: "Adress",
+          label: "Email",
           sortable: false,
         },
         {
@@ -114,6 +122,7 @@ export default {
       currentIndex: -1,
       title: "",
       aaze: null,
+      filter: null,
     };
   },
   methods: {
@@ -149,7 +158,16 @@ export default {
           console.log(e);
         });
     },
-
+    removeAdmin(id) {
+      AdminDataService.deleteAdmin(id)
+        .then((response) => {
+          console.log(response.data);
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     searchTitle() {
       AdminDataService.findByTitle(this.title)
         .then((response) => {

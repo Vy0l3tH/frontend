@@ -33,8 +33,8 @@ Vue.use(Router);
       component: () => import("./components/AdminList")
     },
     {
-      path: "/addPatient",
-      name: "addPatient",
+      path: "/addAdmin",
+      name: "addAdmin",
       component: () => import("./components/AddAdmin")
     },
     {

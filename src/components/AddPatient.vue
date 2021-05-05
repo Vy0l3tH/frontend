@@ -137,7 +137,7 @@
           required>
         </b-form-input>
       </b-form-group>                                                                      
-          <b-button type="submit" class="mr-2" variant="info">Submit</b-button>   
+      <b-button type="submit" class="mr-2" variant="info">Submit</b-button>   
       <b-button type="reset" variant="info">Reset</b-button>
     </b-form>
     </b-row>
@@ -192,7 +192,6 @@ export default {
         password: this.patient.password,
         role: this.patient.role,
         patientNumber: this.patient.patientNumber,
-        attributionGroup: this.patient.attributionGroup,
         followUpType: this.patient.followUpType,
         alarm: this.patient.alarm,
         gdprAgreement: this.patient.gdprAgreement,
@@ -245,7 +244,6 @@ export default {
       this.patient.username = ''
       this.patient.password = ''
       this.patient.patientNumber = ''
-      this.patient.attributionGroup = ''
       this.patient.followUpType = ''
       this.patient.alarm = 1
       this.patient.gdprAgreement = 0
@@ -268,7 +266,7 @@ export default {
         console.log(this.modifyForm)
         if(!this.$route.query.id == '')
           this.modifyForm= true;
-        console.log(this.modifyForm)
+        console.log(this.modifyForm);
 
       })
       .catch((e) => {

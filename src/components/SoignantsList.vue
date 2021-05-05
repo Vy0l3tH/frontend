@@ -11,29 +11,43 @@
       </b-col>
     </b-row>
     <b-row>
-        <form>  
-            <input type="text" class="form-control" value="Recherche">
-        </form> 
+ <!-- filtre sur l'ensemble des données -->
+        <b-form-group
+          label-for="filter-input"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Recherche"
+            >
+            </b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Effacer</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+<!-- fin du filtre -->
     </b-row>
     <b-row>
       <b-col cols="16" align-h="start">
-      <b-table
-        striped
-        hover
-        :items="soignants"
-        :fields="fieldsDef"
-      >
-       <template #cell(plop)>
-        
-     
-        <b-button class="btn btn-sm btn-info mr-2" :href="'/addSoignant/'">
-         Edit
-        </b-button>
-         <b-button class="btn btn-sm btn-info " :href="'/addSoignant/'">
-         Delete
-        </b-button>
-      </template>
-      </b-table>
+        <b-table striped hover  :items="soignants" :fields="fieldsDef" :filter="filter" >
+          <template #cell(plop)="data">
+            <b-button
+              class="btn btn-sm btn-info mr-2"
+              :href="'AddSoignant?id=' + `${data.item.id}`"
+            >
+              Edit
+            </b-button>
+            <b-button
+              class="btn btn-sm btn-info"
+              v-on:click="removeSoignant(data.item.id)"
+            >
+              Delete
+            </b-button>
+          </template>
+        </b-table>
       
       </b-col>
     </b-row>
@@ -89,17 +103,12 @@ export default {
           label: "Role",
           sortable: false,
         }, 
-        {
-          key: "attributionGroup",
-          label: "Groupe d'attribution",
-          sortable: true,
-        }, 
-                {
+           {
           key: "caregiverType",
           label: "Type de soignant",
           sortable: true,
         }, 
-                {
+            {
           key: "institution",
           label: "Institution",
           sortable: false,
@@ -116,6 +125,7 @@ export default {
       currentIndex: -1,
       title: "",
       aaze: null,
+      filter: null,
     };
   },
   methods: {
@@ -143,6 +153,18 @@ export default {
 
     removeAllSoignants() {
       SoignantDataService.deleteAll()
+        .then((response) => {
+          console.log(response.data);
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+
+    removeSoignant(id) {
+      SoignantDataService.deleteSoignant(id)
         .then((response) => {
           console.log(response.data);
           this.refreshList();
