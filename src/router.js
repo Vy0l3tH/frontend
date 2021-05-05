@@ -68,6 +68,16 @@ Vue.use(Router);
       component: () => import("./components/AddGroup")
     },
     {
+      path: "/addShippingPolicy/",
+      name: "addShippingPolicy",
+      component: () => import("./components/AddShippingPolicy.vue")
+    },
+    {
+      path: "/shippingPolicies/",
+      name: "shippingPolicies",
+      component: () => import("./components/ShippingPolicyList.vue")
+    },
+    {
       path: '/',
       name: 'home',
       component: Home

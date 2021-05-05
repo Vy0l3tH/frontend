@@ -46,14 +46,30 @@
             >
               Delete
             </b-button>
+            <b-button  class="btn btn-sm btn-info" v-b-modal.modal-1>Send form</b-button>
+
+       
           </template>
         </b-table>
       </b-col>
     </b-row>
+     <b-modal id="modal-1" title="Send form">
+           <b-form-select v-model="selectedForm">
+            <b-select-option
+              v-for="form in formsList"
+              v-bind:key="form.id"
+              v-bind:value="form"
+            >
+              {{ form.name }}
+            </b-select-option>
+            <!-- objet littéral en ligne -->
+          </b-form-select>
+        </b-modal>
   </b-container>
 </template>
 <script>
 import PatientDataService from "../services/PatientDataService";
+import FormDataService from "../services/FormDataService";
 
 export default {
   name: "patients-list",
@@ -141,8 +157,9 @@ export default {
       currentPatient: null,
       currentIndex: -1,
       title: "",
-      aaze: null,
+     formsList: [],
       filter: null,
+      selectedForm:""
     };
   },
   methods: {
@@ -151,6 +168,16 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.patients = response.data.items;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }, retrieveForms() {
+      FormDataService.getAll()
+        .then((response) => {
+          console.log(response.data);
+          this.formsList = response.data.items;
           console.log(response.data);
         })
         .catch((e) => {
@@ -204,6 +231,7 @@ export default {
   },
   mounted() {
     this.retrievePatients();
+    this.retrieveForms();
   },
 };
 </script>

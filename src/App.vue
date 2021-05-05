@@ -45,6 +45,11 @@
                 >Forms</router-link
               >
             </li>           
+            <li class="nav-item">
+              <router-link to="/shippingPolicies" class="nav-link"
+                >Shipping policies</router-link
+              >
+            </li> 
           </div>
         </b-nav>
       </div>

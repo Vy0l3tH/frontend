@@ -1,6 +1,6 @@
 <template>
-  <div  >
-    <b-form-group v-if="editionmode" > 
+  <div>
+    <b-form-group v-if="editionmode">
       <label for="labelInput">Label</label>
       <b-form-input
         id="labelInput"
@@ -8,7 +8,7 @@
         v-model="block.headline"
       ></b-form-input>
     </b-form-group>
-    <b-form inline v-if="editionmode" class="mb-2" >
+    <b-form inline v-if="editionmode" class="mb-2">
       <label class="mr-sm-2" for="inline-form-custom-select-pref"
         >Returned value :
       </label>
@@ -27,21 +27,13 @@
         placeholder=""
         v-model="currentTitle"
       ></b-form-input>
-      <button type="button" @click="addOption" class="bg-info btn btn-success ">
+      <button type="button" @click="addOption" class="bg-info btn btn-success">
         Add option
       </button>
-     
     </b-form>
- <b-table 
-        striped
-        hover
-        :items="block.options"
-        v-if="editionmode"
-      ></b-table>
+    <b-table striped hover :items="block.options" v-if="editionmode"></b-table>
     <b-form-group v-if="!editionmode">
-      <label class="mr-sm-2" >{{
-        block.headline
-      }}</label>
+      <label class="mr-sm-2">{{ block.headline }}</label>
       <b-form-select v-model="selectedOption">
         <b-select-option
           v-for="valueOption in block.options"
