@@ -33,7 +33,12 @@
               <router-link to="/admins" class="nav-link"
                 >Administrateurs</router-link
               >
-            </li>          
+            </li>
+            <li class="nav-item">
+              <router-link to="/groups" class="nav-link"
+                >Groupes</router-link
+              >
+            </li>         
             
             <li class="nav-item">
               <router-link to="/forms" class="nav-link"

@@ -159,8 +159,8 @@ export default {
       //empêche le comportement normal du bouton submit
       event.preventDefault()
       // Vérifie les erreurs de validation du form
-      this.passwordError = this.admin.password.length > 5 ?
-       '' : 'Password must be at least 6 chars long'
+      this.passwordError = this.admin.password.length > 4 ?
+       '' : 'Password must be at least 5 chars long'
       if(!this.passwordError)
       { 
       this.saveAdmin()

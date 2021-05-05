@@ -28,7 +28,6 @@ Vue.use(Router);
     },
     {
       path: "/admins",
-      alias: "/admins",
       name: "admins",
       component: () => import("./components/AdminList")
     },
@@ -57,6 +56,16 @@ Vue.use(Router);
       path: "/addSoignant/",
       name: "addSoignant",
       component: () => import("./components/AddSoignant")
+    },
+    {
+      path: "/groups",
+      name: "groups",
+      component: () => import("./components/GroupsList")
+    },
+    {
+      path: "/addGroup",
+      name: "addGroup",
+      component: () => import("./components/AddGroup")
     },
     {
       path: '/',
