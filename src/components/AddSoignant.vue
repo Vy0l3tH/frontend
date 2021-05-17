@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import SoignantDataService from "../services/SoignantDataService";
+import CaregiverDataService from "../services/CaregiverDataService";
 
 export default {
   name: "add-soignant",
@@ -148,9 +148,9 @@ export default {
         institution: this.soignant.institution
       };
       if(this.modifyForm)
-        SoignantDataService.updateSoignant(this.$route.query.id, data)
+        CaregiverDataService.updateSoignant(this.$route.query.id, data)
       else
-      SoignantDataService.create(data)
+      CaregiverDataService.create(data)
         .then(response => {
           this.soignant._id = response.data._id;
           console.log(response.data);
@@ -202,7 +202,7 @@ export default {
         })
       },
       retrieveSoignant(id) {
-      SoignantDataService.getSoignant(id)
+      CaregiverDataService.getSoignant(id)
         .then((response) => {
           console.log(response.data);
           this.soignant = response.data;

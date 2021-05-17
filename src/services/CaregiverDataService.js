@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class SoignantDataService {
+class CaregiverDataService {
   getAll() {
     return http.get("/caregivers");
   }
@@ -24,4 +24,4 @@ class SoignantDataService {
   }
 }
 
-export default new SoignantDataService();
+export default new CaregiverDataService();

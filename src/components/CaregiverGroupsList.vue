@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-row>
       <b-col cols="12" align-h="start">
-        <router-link to="/addGroup/">
+        <router-link to="/addCaregiverGroup/">
           <a class="m-3 btn btn-sm btn-info" :href="'/addGroup/'">
             New group
           </a>

@@ -54,7 +54,7 @@
   </b-container>
 </template>
 <script>
-import SoignantDataService from "../services/SoignantDataService";
+import CaregiverDataService from "../services/CaregiverDataService";
 
 export default {
   name: "soignants-list",
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     retrieveSoignants() {
-      SoignantDataService.getAll()
+      CaregiverDataService.getAll()
         .then((response) => {
           this.soignants = response.data.items;
           console.log(response.data);
@@ -152,7 +152,7 @@ export default {
     },
 
     removeAllSoignants() {
-      SoignantDataService.deleteAll()
+      CaregiverDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
           this.refreshList();
@@ -164,7 +164,7 @@ export default {
 
 
     removeSoignant(id) {
-      SoignantDataService.deleteSoignant(id)
+      CaregiverDataService.deleteSoignant(id)
         .then((response) => {
           console.log(response.data);
           this.refreshList();
@@ -175,7 +175,7 @@ export default {
     },
 
     searchTitle() {
-      SoignantDataService.findByTitle(this.title)
+      CaregiverDataService.findByTitle(this.title)
         .then((response) => {
           this.soignants = response.data;
           console.log(response.data);
