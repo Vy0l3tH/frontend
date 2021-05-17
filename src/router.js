@@ -58,9 +58,14 @@ Vue.use(Router);
       component: () => import("./components/AddSoignant")
     },
     {
-      path: "/groups",
-      name: "groups",
-      component: () => import("./components/GroupsList")
+      path: "/caregiverGroups",
+      name: "Caregiver groups",
+      component: () => import("./components/CaregiverGroupsList")
+    },
+    {
+      path: "/patientGroups",
+      name: "Patient groups",
+      component: () => import("./components/PatientGroupsList")
     },
     {
       path: "/addGroup",

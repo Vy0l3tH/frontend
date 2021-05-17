@@ -1,8 +1,11 @@
 import http from "../http-common";
 
 class GroupDataService {
-  getAll() {
-    return http.get("/groups");
+  getAllPatientGroup() {
+    return http.get("/groups/patient");
+  }
+  getAllCaregiversGroup() {
+    return http.get("/groups/caregiver");
   }
   getGroup(id){
     return http.get(`/groups/${id}`);
@@ -10,8 +13,11 @@ class GroupDataService {
   updateGroup(id, data){
     return http.put(`/groups/${id}`, data);
   }
-  create(data) {
-    return http.post("/groups", data);
+  createPatientGroup(data) {
+    return http.post("/groups/patient", data);
+  }
+  createCaregiver(data) {
+    return http.post("/groups/caregiver", data);
   }
   deleteGroup(id) {
     return http.delete(`/groups/${id}`);
