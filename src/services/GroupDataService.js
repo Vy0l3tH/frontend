@@ -8,6 +8,7 @@ class GroupDataService {
     return http.get("/groups/caregiver");
   }
   getGroup(id){
+    console.log("lol"+id)
     return http.get(`/groups/${id}`);
   }
   updateGroup(id, data){
@@ -16,7 +17,7 @@ class GroupDataService {
   createPatientGroup(data) {
     return http.post("/groups/patient", data);
   }
-  createCaregiver(data) {
+  createCaregiverGroup(data) {
     return http.post("/groups/caregiver", data);
   }
   deleteGroup(id) {

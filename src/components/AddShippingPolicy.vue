@@ -83,6 +83,7 @@ export default {
     };
   },
   methods: {
+   
     addForm() {
       this.currentShippingPolicy.Forms.push(this.selectedForm);
     },

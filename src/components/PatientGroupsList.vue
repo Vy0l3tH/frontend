@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" align-h="start">
         <router-link to="/addPatientGroup/">
-          <a class="m-3 btn btn-sm btn-info" :href="'/addGroup/'">
+          <a class="m-3 btn btn-sm btn-info" :href="'/addPatientGroup/'">
             New group
           </a>
         </router-link>
@@ -36,7 +36,7 @@
           <template #cell(plop)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
-              :href="'AddGroup?id=' + `${data.item.id}`"
+              :href="'AddPatientGroup?id=' + `${data.item.id}`"
             >
               Edit
             </b-button>
@@ -91,7 +91,6 @@ export default {
   },
   methods: {
     retrieveGroups() {
-      console.log('llloooll')
       GroupDataService.getAllPatientGroup()
         .then((response) => {
           console.log(response.data);
