@@ -29,7 +29,6 @@
           >
             {{ component.name }}
           </b-select-option>
-          <!-- objet littéral en ligne -->
         </b-form-select>
         <button
           type="button"
@@ -38,36 +37,40 @@
         >
           Add
         </button>
+
         <b-form-group id="input-group-1" label="Fields:" label-for="content">
           <div v-if="currentForm">
             <template v-for="block in currentForm.content">
               <div :key="block.uid" class="border p-2 mb-2">
+                <b-checkbox v-model="block.selected"></b-checkbox>
                 <h5>{{ block.component }}</h5>
                 <component
                   :editionmode="editionmode"
                   :is="block.component"
                   :block="block"
                 ></component>
-                <button
-                  type="button"
-                  @click="addAlert(block.uid)"
-                  class="bg-danger btn btn-success my-2"
-                >
-                  Add alert
-                </button>
                 <template v-for="alert in block.alerts">
                   <component
                     :key="alert.uid"
                     :is="alert.component"
                     :cont="alert"
                   ></component>
-                  
                 </template>
               </div>
             </template>
           </div>
         </b-form-group>
+        <b-button class="btn btn-sm btn-info" v-b-modal.modal-1
+          >Add alert form</b-button
+        >
       </b-form>
+      <b-modal id="modal-1" title="Alert type" @ok="addFormAlert">
+        <b-form-select v-model="alertType">
+          <b-select-option value="higherThan"> Higher than </b-select-option>
+          <!-- objet littéral en ligne -->
+        </b-form-select>
+        <b-input v-model="alertValue"></b-input>
+      </b-modal>
     </b-row>
   </b-container>
 </template>
@@ -81,13 +84,17 @@ export default {
       editionmode: true,
       name: "MyAdminProMaxComponent",
       selectedControl: "freeText",
+      alertType: "",
+      alertValue: "",
       componentList: [
         { name: "Free text", value: "freeText" },
         { name: "Combo box", value: "comboBox" },
         { name: "Number input", value: "numberInput" },
+        { name: "Rating", value: "rating" },
       ],
       currentForm: {
         content: [],
+        alerts: [],
       },
     };
   },
@@ -99,30 +106,38 @@ export default {
         headline: "",
         value: "",
         options: [],
-        alerts: [],
+      });
+    },
+    addFormAlert() {
+      var componentList = this.currentForm.content.filter(
+        (block) => block.selected
+      );
+      console.log(this.currentForm.alerts);
+      alert(componentList.map(a => a.uid))
+      this.currentForm.alerts.push({
+        alertType: this.alertType,
+        componentList: componentList.map(a => a.uid),
+        value: this.alertValue,
       });
     },
     addAlert(id) {
       var found = this.currentForm.content.findIndex(function (post) {
         if (post.uid == id) return true;
       });
-      alert(this.currentForm.content[found].uid);
+
       this.currentForm.content[found].alerts.push({
         component: "higherThan",
         uid: this.$uuid.v1(),
         value: "",
+        selected: false,
       });
-      alert(found);
     },
     switchEditionMode() {
       this.editionmode = !this.editionmode;
     },
     saveForm() {
-      var data = {
-        name: this.currentForm.name,
-        content: this.currentForm.content,
-      };
-      FormDataService.create(data)
+      console.log(this.currentForm);
+      FormDataService.create(this.currentForm)
         .then((response) => {
           this.data.id = response.data.id;
           console.log(response.data);

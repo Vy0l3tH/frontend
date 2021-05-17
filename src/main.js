@@ -6,6 +6,7 @@ import router from './router'
 import freeText from './components/FormBlocks/FreeText.vue'
 import higherThan from './components/AlertBlocks/HigherThan.vue'
 import comboBox from './components/FormBlocks/ComboBox.vue'
+import rating from './components/FormBlocks/Rating.vue'
 import numberInput from './components/FormBlocks/NumberInput.vue'
 import {VueFormBuilderPlugin} from 'v-form-builder'
 import 'v-form-builder/dist/v-form-builder.css' //load CSS from your App
@@ -34,6 +35,7 @@ Vue.component('FreeText', freeText);
 Vue.component('ComboBox', comboBox);
 Vue.component('HigherThan', higherThan);
 Vue.component('NumberInput', numberInput);
+Vue.component('Rating', rating);
 Vue.config.productionTip = false
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
 // Make BootstrapVue available throughout your project
