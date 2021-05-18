@@ -50,32 +50,24 @@ export default {
         if (alert.alertType == "higherThan") {
           var total = 0;
 
-          
-          
-          
-  
           var patate = this.currentForm.content.filter((block) =>
             alert.componentList.includes(block.uid)
           );
-          
 
           patate.forEach((elem) => {
-            
             total += Number(elem.value);
           });
-          
 
           if (total > Number(alert.value)) {
             var newAlert = {
-              label:"Alert on value for this form",
-              ressource:"form",
-              ressourceId:this.currentForm.id,
-              date:Date.now(),
-              state:'UNSEEN'
-            }
+              label: "Alert on value for this form",
+              ressource: "form",
+              ressourceId: this.currentForm.id,
+              date: Date.now(),
+              state: "UNSEEN",
+            };
 
-            AlertDataService.create(this.$route.query.userId,newAlert)
-          
+            AlertDataService.create(this.$route.query.userId, newAlert);
           }
         }
       });

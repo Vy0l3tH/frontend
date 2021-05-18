@@ -93,6 +93,7 @@ export default {
         { name: "Rating", value: "rating" },
       ],
       currentForm: {
+        validated:false,
         content: [],
         alerts: [],
       },
