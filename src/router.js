@@ -73,6 +73,27 @@ Vue.use(Router);
       component: () => import("./components/AddPatientGroup")
     },
     {
+      path: "/patientFormList",
+      name: "My patients forms",
+      component: () => import("./components/PatientFormList")
+    },
+    {
+      path: "/alertList",
+      name: "My patients alerts",
+      component: () => import("./components/AlertList.vue")
+    }
+    ,
+    {
+      path: "/viewForm",
+      name: "Form ",
+      component: () => import("./components/FillForm.vue")
+    },
+    {
+      path: "/patientsByCaregiver",
+      name: "My patients",
+      component: () => import("./components/PatientsList")
+    },
+    {
       path: "/addCaregiverGroup",
       name: "Caregiver group",
       component: () => import("./components/AddCaregiverGroup")

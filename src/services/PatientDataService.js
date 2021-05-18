@@ -7,6 +7,9 @@ class PatientDataService {
   getPatient(id){
     return http.get(`/patients/${id}`);
   }
+  findPatientByCaregiverId(id){
+    return http.get(`/patients/caregiver/${id}`);
+  }
   updatePatient(id, data){
     return http.put(`/patients/${id}`, data);
   }

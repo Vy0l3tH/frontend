@@ -2,15 +2,15 @@
   <div id="app container">
     <div class="row py-3 bg-info">
       <div class="col-2">
-        <span class= "navbar-brand">HOMELINK </span>
+        <span class="navbar-brand">HOMELINK </span>
       </div>
-      <div  v-if="currentUser" class="col-9">
-       <span class= "navbar-brand">{{currentUser.role}} MODE</span>
+      <div v-if="currentUser" class="col-9">
+        <span class="navbar-brand">{{ currentUser.id }} MODE</span>
       </div>
-      <div v-if="currentUser" class="navbar-nav ml-auto col-1">  
+      <div v-if="currentUser" class="navbar-nav ml-auto col-1">
         <li class="nav-item">
           <a class="nav-link bg-info" href @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt"/>Logout
+            <font-awesome-icon icon="sign-out-alt" />Logout
           </a>
         </li>
       </div>
@@ -38,27 +38,40 @@
               <router-link to="/patientGroups" class="nav-link"
                 >Groupes patients</router-link
               >
-            </li>    
+            </li>
             <li class="nav-item">
               <router-link to="/caregiverGroups" class="nav-link"
                 >Groupes soignants</router-link
               >
-            </li>       
-            
+            </li>
+
             <li class="nav-item">
-              <router-link to="/forms" class="nav-link"
-                >Forms</router-link
-              >
-            </li>           
+              <router-link to="/forms" class="nav-link">Forms</router-link>
+            </li>
             <li class="nav-item">
               <router-link to="/shippingPolicies" class="nav-link"
                 >Shipping policies</router-link
               >
-            </li> 
+            </li>
+            <li class="nav-item">
+              <router-link to="/alertList" class="nav-link"
+                >Mes alertes</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link to="/patientFormList" class="nav-link"
+                >Mes formulaires</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link to="/patientsByCaregiver" class="nav-link"
+                >Mes patients</router-link
+              >
+            </li>
           </div>
         </b-nav>
       </div>
-      <div :class="currentUser ? 'col-10' : 'col-12' " >
+      <div :class="currentUser ? 'col-10' : 'col-12'">
         <router-view />
       </div>
     </div>
@@ -67,16 +80,15 @@
 
 <script>
 export default {
- data() {
-   return {
-  active:"col-12"
- }}
-  ,
+  data() {
+    return {
+      active: "col-12",
+    };
+  },
   computed: {
     currentUser() {
-      if (this.$store.state.auth.user)
-        return this.$store.state.auth.user;
-        else return null;
+      if (this.$store.state.auth.user) return this.$store.state.auth.user;
+      else return null;
     },
   },
   methods: {

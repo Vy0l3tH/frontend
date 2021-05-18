@@ -10,8 +10,14 @@ class FormataService {
   updateForm(id, data){
     return http.put(`/forms/${id}`, data);
   }
+  addFormToUser(id, data){
+    return http.put(`/forms/patient/${id}`, data);
+  }
   create(data) {
     return http.post("/forms", data);
+  }
+  findFormByCaregiverId(id){ 
+    return http.get(`/forms/caregiver/${id}`);
   }
   deleteForm(id) {
     return http.delete(`/forms/${id}`);

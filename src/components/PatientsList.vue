@@ -51,14 +51,17 @@
             >
               Delete
             </b-button>
-            <b-button class="btn btn-sm btn-info" v-b-modal.modal-1
+            <b-button
+              class="btn btn-sm btn-info"
+              v-on:click="setSelectedPatient(data.item.id)"
+              v-b-modal.modal-1
               >Send form</b-button
             >
           </template>
         </b-table>
       </b-col>
     </b-row>
-    <b-modal id="modal-1" title="Send form">
+    <b-modal id="modal-1" title="Send form" @ok="handleOk">
       <b-form-select v-model="selectedForm">
         <b-select-option
           v-for="form in formsList"
@@ -165,20 +168,50 @@ export default {
       formsList: [],
       filter: null,
       selectedForm: "",
+      selectedPatientId: "",
     };
   },
-  methods: {
-    retrievePatients() {
-      PatientDataService.getAll()
-        .then((response) => {
-          console.log(response.data);
-          this.patients = response.data.items;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+  computed: {
+    currentUser() {
+      if (this.$store.state.auth.user) return this.$store.state.auth.user;
+      else return null;
     },
+  },
+  methods: {
+    handleOk() {
+
+ FormDataService.addFormToUser(this.selectedPatientId, this.selectedForm);
+
+     
+    },
+    setSelectedPatient(id) {
+      this.selectedPatientId = id;
+    },
+    retrievePatients() {
+      if (this.currentUser.role == "ADMINISTRATOR") {
+        PatientDataService.getAll()
+          .then((response) => {
+            console.log(response.data);
+            this.patients = response.data.items;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+       if (this.currentUser.role == "CAREGIVER") {
+        PatientDataService.findPatientByCaregiverId(this.currentUser.id)
+          .then((response) => {
+            console.log(response.data);
+            this.patients = response.data.items;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    },
+
     retrieveForms() {
       FormDataService.getAll()
         .then((response) => {
