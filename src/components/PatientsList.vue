@@ -191,37 +191,31 @@ export default {
       if (this.currentUser.role == "ADMINISTRATOR") {
         PatientDataService.getAll()
           .then((response) => {
-            console.log(response.data);
+            
             this.patients = response.data.items;
-            console.log(response.data);
+            
           })
-          .catch((e) => {
-            console.log(e);
-          });
+          .catch();
       }
        if (this.currentUser.role == "CAREGIVER") {
         PatientDataService.findPatientByCaregiverId(this.currentUser.id)
           .then((response) => {
-            console.log(response.data);
+            
             this.patients = response.data.items;
-            console.log(response.data);
+            
           })
-          .catch((e) => {
-            console.log(e);
-          });
+          .catch();
       }
     },
 
     retrieveForms() {
       FormDataService.getAll()
         .then((response) => {
-          console.log(response.data);
+          
           this.formsList = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -237,35 +231,29 @@ export default {
 
     removeAllPatients() {
       PatientDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function(){
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     removePatient(id) {
       PatientDataService.deletePatient(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function(){
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     searchTitle() {
       PatientDataService.findByTitle(this.title)
         .then((response) => {
           this.patients = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

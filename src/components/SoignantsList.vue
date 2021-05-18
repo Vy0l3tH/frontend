@@ -133,11 +133,9 @@ export default {
       CaregiverDataService.getAll()
         .then((response) => {
           this.soignants = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -153,36 +151,29 @@ export default {
 
     removeAllSoignants() {
       CaregiverDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function (){         
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
 
     removeSoignant(id) {
       CaregiverDataService.deleteSoignant(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     searchTitle() {
       CaregiverDataService.findByTitle(this.title)
         .then((response) => {
           this.soignants = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

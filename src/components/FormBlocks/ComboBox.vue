@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     addOption() {
-      console.log(this.block.options.some((e) => e.title == this.currentValue));
+      
       if (!this.block.options.some((e) => e.value == this.currentValue)) {
         this.block.options.push({
           value: this.currentValue,

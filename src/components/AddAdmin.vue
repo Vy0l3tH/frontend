@@ -143,12 +143,10 @@ export default {
         
         .then(response => {
           this.admin._id = response.data._id;
-          console.log(response.data);
+          
           this.submitted = true;
         })
-        .catch(e => {
-          console.log(e);
-        });
+        .catch();
     },
     
     newAdmin() {
@@ -191,18 +189,16 @@ export default {
       retrieveAdmin(id) {
         AdminDataService.getAdmin(id)
       .then((response) => {
-        console.log(response.data);
+        
         this.admin = response.data;
-        console.log(response.data);
-        console.log(this.modifyForm)
+        
+        
         if(!this.$route.query.id == '')
           this.modifyForm= true;
-        console.log(this.modifyForm);
+        
 
       })
-      .catch((e) => {
-        console.log(e);
-      });     
+      .catch();     
     
   }
 },

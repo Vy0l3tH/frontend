@@ -94,13 +94,11 @@ export default {
     retrieveGroups() {
       GroupDataService.getAllCaregiversGroup()
         .then((response) => {
-          console.log(response.data);
+          
           this.groups = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -116,35 +114,29 @@ export default {
 
     removeAllGroups() {
       GroupDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     removeGroup(id) {
       GroupDataService.deleteGroup(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function(){
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     searchTitle() {
       GroupDataService.findByTitle(this.title)
         .then((response) => {
           this.groups = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

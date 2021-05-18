@@ -135,7 +135,7 @@ export default {
         groupName: this.group.groupName,
         users: this.group.users,
       };
-      console.log(data);
+      
       if (this.modifyForm)
         GroupDataService.updateGroup(this.$route.query.id, data);
       else
@@ -143,12 +143,10 @@ export default {
 
           .then((response) => {
             this.group._id = response.data._id;
-            console.log(response.data);
+            
             this.submitted = true;
           })
-          .catch((e) => {
-            console.log(e);
-          });
+          .catch();
     },
 
     AddUserinGroup(groupId, userId) {
@@ -160,13 +158,11 @@ export default {
     retrievePatients() {
       PatientDataService.getAll()
         .then((response) => {
-          console.log(response.data);
+          
           this.patients = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -202,16 +198,14 @@ export default {
     retrieveGroup(id) {
       GroupDataService.getGroup(id)
         .then((response) => {
-          console.log(response.data);
+          
           this.group = response.data;
-          console.log(response.data);
-          console.log(this.modifyForm);
+          
+          
           if (!this.$route.query.id == "") this.modifyForm = true;
-          console.log(this.modifyForm);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

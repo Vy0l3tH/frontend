@@ -11,13 +11,13 @@
           <template #cell(plop)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
-              :href="'AddForm?id=' + `${data.item.id}`"
+              :href="'viewForm?userId='+`${data.item.userId}`+'&id=' + `${data.item.id}`"
             >
               View
             </b-button>
             <b-button
               class="btn btn-sm btn-info"
-              v-on:click="removeForm(data.item.id)"
+              v-on:click="vali(data.item.id)"
             >
               Validate
             </b-button>
@@ -41,6 +41,11 @@ export default {
           sortable: false,
         },
         {
+          key: "firstName",
+          label: "User Name",
+          sortable: false,
+        },
+        {
           key: "plop",
           label: "",
           sortable: false,
@@ -53,25 +58,32 @@ export default {
       aaze: null,
     };
   },
-   computed: {
+  computed: {
     currentUser() {
       if (this.$store.state.auth.user) return this.$store.state.auth.user;
       else return null;
     },
- },
+  },
   methods: {
- 
     retrieveForms() {
-    
       FormDataService.findFormByCaregiverId(this.currentUser.id)
         .then((response) => {
-         
-          this.forms = response.data.items;
-          console.log(response.data);
+          var plop = [];
+          response.data.items.forEach((element) => {
+            
+            element.forms.items.forEach((form) => {
+              
+              form.firstName = element.user.firstName
+              
+              form.userId = element.user.id
+            plop = plop.concat(form);
+          });
+          });
+
+          
+          this.forms = plop;
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -87,35 +99,29 @@ export default {
 
     removeAllForms() {
       FormDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     removeForm(id) {
       FormDataService.deleteForm(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     searchTitle() {
       FormDataService.findByTitle(this.title)
         .then((response) => {
           this.forms = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

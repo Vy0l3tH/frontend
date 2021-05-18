@@ -8,7 +8,7 @@ class GroupDataService {
     return http.get("/groups/caregiver");
   }
   getGroup(id){
-    console.log("lol"+id)
+    
     return http.get(`/groups/${id}`);
   }
   updateGroup(id, data){
@@ -28,7 +28,7 @@ class GroupDataService {
     return http.put(`/groups/${groupId}/${userId}`);
   }
   deleteUserInGroup(groupId, userId) {
-    console.log("groupe : " + groupId + " user : " + userId)
+    
     return http.delete(`/groups/${groupId}/${userId}`);
   }
 }

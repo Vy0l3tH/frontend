@@ -99,13 +99,11 @@ export default {
     retrieveShippingPolicys() {
       ShippingPolicyDataService.getAll()
         .then((response) => {
-          console.log(response.data);
+          
           this.shippingPolicys = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -121,35 +119,26 @@ export default {
 
     removeAllShippingPolicys() {
       ShippingPolicyDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     removeShippingPolicy(id) {
       ShippingPolicyDataService.deleteShippingPolicy(id)
-        .then((response) => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+        .then()
+        .catch();
     },
 
     searchTitle() {
       ShippingPolicyDataService.findByTitle(this.title)
         .then((response) => {
           this.shippingPolicys = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

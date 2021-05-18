@@ -153,13 +153,11 @@ export default {
       CaregiverDataService.create(data)
         .then(response => {
           this.soignant._id = response.data._id;
-          console.log(response.data);
+          
           this.submitted = true;
-          console.log(this.submitted)
+          
         })
-        .catch(e => {
-          console.log(e);
-        });
+        .catch();
     },
     
     newSoignant() {
@@ -204,18 +202,16 @@ export default {
       retrieveSoignant(id) {
       CaregiverDataService.getSoignant(id)
         .then((response) => {
-          console.log(response.data);
+          
           this.soignant = response.data;
-          console.log(response.data);
-          console.log(this.modifyForm)
+          
+          
           if(!this.$route.query.id == '')
             this.modifyForm= true;
-          console.log(this.modifyForm)
+          
 
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
       }
   },
   mounted() {

@@ -66,13 +66,11 @@ export default {
     retrieveForms() {
       FormDataService.getAll()
         .then((response) => {
-          console.log(response.data);
+          
           this.forms = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -88,35 +86,29 @@ export default {
 
     removeAllForms() {
       FormDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     removeForm(id) {
       FormDataService.deleteForm(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     searchTitle() {
       FormDataService.findByTitle(this.title)
         .then((response) => {
           this.forms = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

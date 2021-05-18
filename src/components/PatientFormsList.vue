@@ -72,22 +72,18 @@ export default {
       PatientDataService.getForms(patient)
         .then((response) => {
           this.forms = response.data.rows;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     retrieveAvailableForms() {
       FormDataService.getAll()
         .then((response) => {
           this.availableForms = response.data.rows;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -103,7 +99,7 @@ export default {
     },
 
     addFormToPatient(form) {
-      console.log(form);
+      
       var data = {
         form: form.form,
         identifiant: form.identifiant,
@@ -111,14 +107,12 @@ export default {
       };
 
       PatientDataService.addForms(this.$route.params.id, data)
-        .then((response) => {
+        .then(function(){
           this.retrieveForms(this.$route.params.id);
-          console.log(response.data);
+          
           this.submitted = true;
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

@@ -94,19 +94,15 @@ export default {
 
           this.submitted = true;
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
     retrieveForms() {
       FormDataService.getAll()
         .then((response) => {
           this.formsList = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
     newShippingPolicy() {
       this.submitted = false;

@@ -62,16 +62,14 @@ export default {
   methods: {
  
     retrieveForms() {
-    console.log(this.currentUser.id)
+    
       AlertDataService.findByCaregiverId(this.currentUser.id)
         .then((response) => {
          
           this.forms = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {

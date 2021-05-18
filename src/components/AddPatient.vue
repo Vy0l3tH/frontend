@@ -205,13 +205,11 @@ export default {
 
         .then(response => {
           this.patient._id = response.data._id;
-          console.log(response.data);
+          
           this.submitted = true;
-          console.log(this.submitted)
+          
         })
-        .catch(e => {
-          console.log(e);
-        });
+        .catch();
     },
     
     newPatient() {
@@ -260,18 +258,16 @@ export default {
     retrievePatient(id) {
     PatientDataService.getPatient(id)
       .then((response) => {
-        console.log(response.data);
+        
         this.patient = response.data;
-        console.log(response.data);
-        console.log(this.modifyForm)
+        
+        
         if(!this.$route.query.id == '')
           this.modifyForm= true;
-        console.log(this.modifyForm);
+        
 
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch();
     }
     
   },

@@ -13,6 +13,9 @@ class FormataService {
   addFormToUser(id, data){
     return http.put(`/forms/patient/${id}`, data);
   }
+  viewFormFromUser(userId,id, data){
+    return http.get(`/forms/patient/${userId}/${id}`, data);
+  }
   create(data) {
     return http.post("/forms", data);
   }

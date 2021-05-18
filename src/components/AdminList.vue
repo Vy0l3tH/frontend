@@ -130,11 +130,9 @@ export default {
       AdminDataService.getAll()
         .then((response) => {
           this.admins = response.data.items;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
 
     refreshList() {
@@ -150,33 +148,27 @@ export default {
 
     removeAllAdmins() {
       AdminDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
     removeAdmin(id) {
       AdminDataService.deleteAdmin(id)
-        .then((response) => {
-          console.log(response.data);
+        .then(function() {
+          
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
     searchTitle() {
       AdminDataService.findByTitle(this.title)
         .then((response) => {
           this.admins = response.data;
-          console.log(response.data);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {

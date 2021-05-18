@@ -112,7 +112,7 @@ export default {
       var componentList = this.currentForm.content.filter(
         (block) => block.selected
       );
-      console.log(this.currentForm.alerts);
+      
       alert(componentList.map(a => a.uid))
       this.currentForm.alerts.push({
         alertType: this.alertType,
@@ -136,30 +136,26 @@ export default {
       this.editionmode = !this.editionmode;
     },
     saveForm() {
-      console.log(this.currentForm);
+      
       FormDataService.create(this.currentForm)
         .then((response) => {
           this.data.id = response.data.id;
-          console.log(response.data);
+          
           this.submitted = true;
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
     retrieveForm(id) {
       FormDataService.getForm(id)
         .then((response) => {
-          console.log(response.data);
+          
           this.currentForm = response.data;
-          console.log(response.data);
-          console.log(this.modifyForm);
+          
+          
           if (!this.$route.query.id == "") this.modifyForm = true;
-          console.log(this.modifyForm);
+          
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch();
     },
   },
   mounted() {
