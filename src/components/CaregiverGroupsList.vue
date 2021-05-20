@@ -3,8 +3,8 @@
     <b-row>
       <b-col cols="12" align-h="start">
         <router-link to="/addCaregiverGroup/">
-          <a class="m-3 btn btn-sm btn-info" :href="'/addCaregiverGroup/'">
-            New group
+          <a class="mt-3 btn btn-sm btn-info" :href="'/addCaregiverGroup/'">
+            Nouveau groupe de soignant
           </a>
         </router-link>
       </b-col>
@@ -22,9 +22,6 @@
               placeholder="Recherche"
             >
             </b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Effacer</b-button>
-            </b-input-group-append>
           </b-input-group>
         </b-form-group>
 <!-- fin du filtre -->
@@ -33,18 +30,18 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover  :items="groups" :fields="fieldsDef" :filter="filter" >
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddCaregiverGroup?id=' + `${data.item.id}`"
             >
-              Edit
+              Editer
             </b-button>
             <b-button
               class="btn btn-sm btn-info"
               v-on:click="removeGroup(data.item.id)"
             >
-              Delete
+              Supprimer
             </b-button>
           </template>
         </b-table>
@@ -61,23 +58,13 @@ export default {
     return {
       fieldsDef: [
         {
-          key: "id",
-          label: "id",
-          sortable: true,
-        },
-        {
           key: "groupName",
           label: "Nom du groupe",
           sortable: true,
         },
         {
-          key: "users",
-          label: "Utilisateurs",
-          sortable: false,
-        },
-        {
-          key: "plop",
-          label: "Edit / Delete",
+          key: "actions",
+          label: "",
           sortable: false,
         },
       ],

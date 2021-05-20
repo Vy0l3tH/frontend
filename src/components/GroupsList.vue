@@ -33,18 +33,18 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover  :items="groups" :fields="fieldsDef" :filter="filter" >
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddGroup?id=' + `${data.item.id}`"
             >
-              Edit
+              Editer
             </b-button>
             <b-button
               class="btn btn-sm btn-info"
               v-on:click="removeGroup(data.item.id)"
             >
-              Delete
+              Supprimmer
             </b-button>
           </template>
         </b-table>
@@ -60,23 +60,14 @@ export default {
   data() {
     return {
       fieldsDef: [
-        {
-          key: "id",
-          label: "id",
-          sortable: true,
-        },
+        
         {
           key: "groupName",
           label: "Nom du groupe",
           sortable: true,
         },
         {
-          key: "users",
-          label: "Utilisateurs",
-          sortable: false,
-        },
-        {
-          key: "plop",
+          key: "actions",
           label: "Edit / Delete",
           sortable: false,
         },

@@ -70,7 +70,9 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+
+                this.$router.push('/patients');
+
     }
   },
   methods: {
@@ -86,7 +88,11 @@ export default {
          
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              this.$router.push('/patients');
+              
+              if(this.$store.state.auth.user.role=="ADMINISTRATOR")
+                this.$router.push('/patients');
+              if(this.$store.state.auth.user.role=="CAREGIVER")
+                this.$router.push('/alertList');
             },
             error => {
               this.loading = false;

@@ -1,69 +1,71 @@
 <template>
-  <div id="app container">
-    <div class="row py-3 bg-info">
-      <div class="col-2">
-        <span class="navbar-brand">HOMELINK </span>
-      </div>
-      <div v-if="currentUser" class="col-9">
-        <span class="navbar-brand">{{ currentUser.id }} MODE</span>
-      </div>
-      <div v-if="currentUser" class="navbar-nav ml-auto col-1">
-        <li class="nav-item">
-          <a class="nav-link bg-info" href @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" />Logout
-          </a>
-        </li>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1 bg-info" v-if="currentUser">
-        <b-nav vertical class="navbar navbar-dark bg-info">
+  <div id="app container" class="flex-grow:1 vh-100" >
+      <b-navbar toggleable="lg" type="dark" variant="info">
+          <b-navbar-brand href="#">HomeLink</b-navbar-brand>
+
+          <b-navbar-toggle  v-if="currentUser"
+            target="nav-collapse navbar-fixed-top"
+          ></b-navbar-toggle>
+
+          <b-collapse id="nav-collapse" is-nav>
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
+              <b-nav-item
+                variant="info"
+                v-if="currentUser"
+                href
+                @click.prevent="logOut"
+              >
+                <font-awesome-icon icon="sign-out-alt" />Logout
+              </b-nav-item>
+            </b-navbar-nav>
+          </b-collapse>
+        </b-navbar>
+    <div class="row h-100 h-100">
+      <div class="col-1 bg-info h-100 flex-grow:1" v-if="currentUser">
+        <b-nav class="navbar navbar-dark bg-info flex-grow:1">
+          
           <div class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item" v-if="isAdmin">
               <router-link to="/patients" class="nav-link"
-                >Patients</router-link
+                >Liste des patients</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isAdmin">
               <router-link to="/soignants" class="nav-link"
-                >Soignants</router-link
+                >Liste des soignants</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isAdmin">
               <router-link to="/admins" class="nav-link"
-                >Administrateurs</router-link
+                >Liste des Administrateurs</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isAdmin">
               <router-link to="/patientGroups" class="nav-link"
-                >Groupes patients</router-link
+                >Groupes de patients</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isAdmin">
               <router-link to="/caregiverGroups" class="nav-link"
-                >Groupes soignants</router-link
+                >Groupes de soignants</router-link
               >
             </li>
 
-            <li class="nav-item">
-              <router-link to="/forms" class="nav-link">Forms</router-link>
+            <li class="nav-item" v-if="isAdmin">
+              <router-link to="/forms" class="nav-link">Liste des formulaire</router-link>
             </li>
-            <li class="nav-item">
-              <router-link to="/shippingPolicies" class="nav-link"
-                >Shipping policies</router-link
-              >
-            </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isCaregiver">
               <router-link to="/alertList" class="nav-link"
                 >Mes alertes</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isCaregiver" >
               <router-link to="/patientFormList" class="nav-link"
-                >Mes formulaires</router-link
+                >Mes formulaires reçus</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="isCaregiver">
               <router-link to="/patientsByCaregiver" class="nav-link"
                 >Mes patients</router-link
               >
@@ -71,7 +73,7 @@
           </div>
         </b-nav>
       </div>
-      <div :class="currentUser ? 'col-10' : 'col-12'">
+      <div :class="currentUser ? 'col-10 flex-grow:1 h-100' : 'col-12'">
         <router-view />
       </div>
     </div>
@@ -90,6 +92,12 @@ export default {
       if (this.$store.state.auth.user) return this.$store.state.auth.user;
       else return null;
     },
+    isAdmin(){
+      return this.$store.state.auth.user.role=="ADMINISTRATOR"
+    },
+    isCaregiver(){
+       return this.$store.state.auth.user.role=="CAREGIVER"
+    }
   },
   methods: {
     logOut() {

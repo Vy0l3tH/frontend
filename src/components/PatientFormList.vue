@@ -8,7 +8,7 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover :items="forms" :fields="fieldsDef">
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'viewForm?userId='+`${data.item.userId}`+'&id=' + `${data.item.id}`"
@@ -46,7 +46,7 @@ export default {
           sortable: false,
         },
         {
-          key: "plop",
+          key: "actions",
           label: "",
           sortable: false,
         },
@@ -68,7 +68,7 @@ export default {
     retrieveForms() {
       FormDataService.findFormByCaregiverId(this.currentUser.id)
         .then((response) => {
-          var plop = [];
+          var actions = [];
           response.data.items.forEach((element) => {
             
             element.forms.items.forEach((form) => {
@@ -76,12 +76,12 @@ export default {
               form.firstName = element.user.firstName
               
               form.userId = element.user.id
-            plop = plop.concat(form);
+            actions = actions.concat(form);
           });
           });
 
           
-          this.forms = plop;
+          this.forms = actions;
         })
         .catch();
     },

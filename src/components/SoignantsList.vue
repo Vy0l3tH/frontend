@@ -4,8 +4,8 @@
     <b-row>
       <b-col cols="12" align-h="start">
           <router-link to="/addSoignant/">
-            <a class="m-3 btn btn-sm btn-info" :href="'/addSoignant/'">
-              New soignant
+            <a class="mt-3 btn btn-sm btn-info" :href="'/addSoignant/'">
+              Nouveau soignant
             </a>
           </router-link>
       </b-col>
@@ -23,9 +23,7 @@
               placeholder="Recherche"
             >
             </b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Effacer</b-button>
-            </b-input-group-append>
+
           </b-input-group>
         </b-form-group>
 <!-- fin du filtre -->
@@ -33,18 +31,18 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover  :items="soignants" :fields="fieldsDef" :filter="filter" >
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddSoignant?id=' + `${data.item.id}`"
             >
-              Edit
+              Editer
             </b-button>
             <b-button
               class="btn btn-sm btn-info"
               v-on:click="removeSoignant(data.item.id)"
             >
-              Delete
+              Supprimer
             </b-button>
           </template>
         </b-table>
@@ -61,64 +59,42 @@ export default {
   data() {
     return {
   
-      fieldsDef: [
+     fieldsDef: [
         {
           key: "name",
-          label: "Name",
+          label: "Nom",
           sortable: true,
         },
         {
           key: "firstName",
-          label: "First name",
+          label: "Prénom",
           sortable: false,
         },
         {
           key: "mailAdress",
-          label: "Email",
+          label: "Adresse email",
           sortable: false,
         },
         {
           key: "adress",
-          label: "Adress",
+          label: "Adresse",
           sortable: false,
         },
         {
           key: "birthDate",
-          label: "Birth date",
+          label: "Date de naissance",
           sortable: false,
         },
         {
           key: "phoneNumber",
-          label: "Phone number",
-          sortable: false,
-        }, 
-
-            {
-          key: "active",
-          label: "Active",
-          sortable: false,
-        }, 
-            {
-          key: "role",
-          label: "Role",
-          sortable: false,
-        }, 
-           {
-          key: "caregiverType",
-          label: "Type de soignant",
-          sortable: true,
-        }, 
-            {
-          key: "institution",
-          label: "Institution",
+          label: "Numéro de téléphone",
           sortable: false,
         },
         {
-          key: "plop",
-          label: "Edit / Delete",
+          key: "actions",
+          label: "",
           sortable: false,
         },
-          
       ],
       soignants: [],
       currentSoignant: null,

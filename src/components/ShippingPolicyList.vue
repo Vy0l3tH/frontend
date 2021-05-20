@@ -38,7 +38,7 @@
           :fields="fieldsDef"
           :filter="filter"
         >
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddShippingPolicy?id=' + `${data.item.id}`"

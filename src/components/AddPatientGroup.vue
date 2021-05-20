@@ -2,21 +2,24 @@
   <b-container fluid>
     <b-row>
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
+      
+        <b-button type="submit" class="mt-2 mr-2 mb-2 btn btn-sm" variant="info">Sauvegarder</b-button>
+        <b-button type="reset" class="mt-2 mr-2 mb-2 btn btn-sm" variant="info">Annuler</b-button>
+          <b-form-group
+            size="sm"
           id="input-group-1"
-          label="Group Name:"
+          label="Nom du groupe :"
           label-for="groupNameInput"
         >
           <b-form-input
+            size="sm"
             id="groupNameInput"
             v-model="group.groupName"
-            placeholder="Enter Group Name"
+            placeholder="Entrez un nom de groupe"
             required
           >
           </b-form-input>
         </b-form-group>
-        <b-button type="submit" class="mr-2" variant="info">Submit</b-button>
-        <b-button type="reset" variant="info">Reset</b-button>
         <b-form-group label-for="filter-input">
           <b-input-group size="sm">
             <b-form-input
@@ -26,11 +29,7 @@
               placeholder="Recherche"
             >
             </b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''"
-                >Effacer</b-button
-              >
-            </b-input-group-append>
+           
           </b-input-group>
         </b-form-group>
         <b-col cols="16" align-h="start">
@@ -41,19 +40,19 @@
             :fields="fieldsDef"
             :filter="filter"
           >
-            <template #cell(check)="data">
-              {{ isInGroup(data.item.id) }}
-            </template>
+          
 
-            <template #cell(plop)="data">
+            <template #cell(actions)="data">
               <b-button
                 class="btn btn-sm btn-info mr-2"
+                  v-if="!isInGroup(data.item.id)"
                 v-on:click="AddUserinGroup(group.id, data.item.id)"
               >
                 Add
               </b-button>
               <b-button
-                class="btn btn-sm btn-info"
+                class="btn btn-sm "
+                  v-if="isInGroup(data.item.id)"
                 v-on:click="DeleteUserinGroup(group.id, data.item.id)"
               >
                 Delete
@@ -63,7 +62,6 @@
         </b-col>
       </b-form>
     </b-row>
-    {{ group.users }}
   </b-container>
 </template>
 
@@ -81,11 +79,7 @@ export default {
         users: [],
       },
       fieldsDef: [
-        {
-          key: "id",
-          label: "id",
-          sortable: true,
-        },
+        
         {
           key: "name",
           label: "Name",
@@ -94,21 +88,11 @@ export default {
         {
           key: "firstName",
           label: "First name",
-          sortable: false,
-        },
-        {
-          key: "username",
-          label: "Username",
-          sortable: false,
-        },
-        {
-          key: "check",
-          label: "Groupe?",
           sortable: true,
         },
         {
-          key: "plop",
-          label: "Add / Delete",
+          key: "actions",
+          label: "",
           sortable: false,
         },
       ],
@@ -127,7 +111,7 @@ export default {
   computed: {},
   methods: {
     isInGroup(id) {
-      return this.group.users.indexOf(id) > -1 ? "Yes" : "No";
+      return this.group.users.indexOf(id) > -1 ;
     },
 
     saveGroup() {

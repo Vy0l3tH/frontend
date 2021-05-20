@@ -8,7 +8,7 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover :items="forms" :fields="fieldsDef">
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddForm?id=' + `${data.item.id}`"
@@ -41,7 +41,7 @@ export default {
           sortable: false,
         },
         {
-          key: "plop",
+          key: "actions",
           label: "",
           sortable: false,
         },

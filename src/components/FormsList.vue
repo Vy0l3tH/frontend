@@ -1,10 +1,10 @@
 <template>
-  <b-container fluid>
+  <b-container fluid class="flex-grow:1">
     <b-row>
       <b-col cols="12" align-h="start">
         <router-link to="/addForm/">
-          <a class="m-3 btn btn-sm btn-info" :href="'/addForm/'">
-            New form
+          <a class="mt-3 btn btn-sm btn-info" :href="'/addForm/'">
+           Nouveau formulaire
           </a>
         </router-link>
       </b-col>
@@ -17,18 +17,18 @@
     <b-row>
       <b-col cols="16" align-h="start">
         <b-table striped hover :items="forms" :fields="fieldsDef">
-          <template #cell(plop)="data">
+          <template #cell(actions)="data">
             <b-button
               class="btn btn-sm btn-info mr-2"
               :href="'AddForm?id=' + `${data.item.id}`"
             >
-              Edit
+              Editer
             </b-button>
             <b-button
               class="btn btn-sm btn-info"
               v-on:click="removeForm(data.item.id)"
             >
-              Delete
+              Supprimer
             </b-button>
           </template>
         </b-table>
@@ -46,12 +46,12 @@ export default {
       fieldsDef: [
         {
           key: "name",
-          label: "Name",
+          label: "Nom",
           sortable: true,
         },
         {
-          key: "plop",
-          label: "Edit / Delete",
+          key: "actions",
+          label: "",
           sortable: false,
         },
       ],

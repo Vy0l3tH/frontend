@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <button type="button" @click="saveForm" class="btn bg-info btn-success m-2">
-      Save this form
+      Sauvegarder
     </button>
     <button
       type="button"
